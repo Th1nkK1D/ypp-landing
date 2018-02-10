@@ -3,12 +3,13 @@
     <!-- Navbar -->
     <div class="navbar">
       <div :class="'icon' + (logoActive ? '' : ' is-shrink')">
-        <div class="triangle"></div>
+        <div class="triangle is-hidden-mobile"></div>
         <object type="image/svg+xml" data="/static/logoypp.svg"></object>
       </div>
 
       <!-- Menu -->
-      <scrollactive :offset="80" class="menu" @itemchanged="onSectionChanged">
+      <scrollactive :offset="80" class="menu is-hidden-mobile" @itemchanged="onSectionChanged">
+        <a href="#title" class="scrollactive-item" style="display: none;"></a>
         <a href="#events" class="scrollactive-item r-line">EVENTS</a>
         <a href="#speakers" class="scrollactive-item r-line">SPEAKERS</a>
         <a href="#supporters" class="scrollactive-item">SUPPORTERS</a>
@@ -18,15 +19,17 @@
     <!-- Heading -->
     <div class="heading">
       <div class="columns is-gapless">
-        <div class="column is-4"></div>
+        <div class="column is-3"></div>
         <div class="column">
-          <h1>Young Passionate Program</h1>
+          <div class="section">
+            <h1 id="title">Young Passionate Program</h1>
 
-          <p>Ignite your passion. Surround with young talent. Informative workshop from experience mentor.</p>
-          <br>
-          <button class="btn-prim">JOIN US</button>
+            <p>Ignite your passion. Surround with young talent. Informative workshop from experience mentor.</p>
+            <br>
+            <button class="btn-prim">JOIN US</button>
+          </div>
+          
         </div>
-        <div class="column is-1"></div>
       </div>
     </div>
     <!-- End of Heading -->
@@ -126,9 +129,22 @@ export default {
 
 <style lang="scss">
   @import "../node_modules/bulma/sass/utilities/_all";
+  @import "../node_modules/bulma/sass/base/_all.sass";
   @import "../node_modules/bulma/sass/grid/columns";
 
   @import "./assets/fonts.scss";
+
+  @mixin mobile {
+   @media (max-width: 768px) {
+       @content;
+   }
+  }
+
+  @mixin desktop {
+   @media (min-width: 769px) {
+       @content;
+   }
+  }
 
   body {
     background: linear-gradient(165deg, #260933, #093038);
@@ -137,22 +153,6 @@ export default {
     font-size: 18px;
     padding: 0;
     margin: 0;
-  }
-
-  h2 {
-    font-family: "beon";
-    font-size: 3em;
-    text-align: center;
-
-    &.hyellow {
-      text-shadow: 0 0 15px #FFA136;
-    }
-    &.hblue {
-      text-shadow: 0 0 15px #36d7ff;
-    }
-    &.hgreen {
-      text-shadow: 0 0 15px #36ffb2;
-    }
   }
 
   .btn-prim {
@@ -173,6 +173,26 @@ export default {
 
   .section {
     padding: 20px 10vw;
+
+    @include mobile {
+      padding: 20px 5vw;
+    }
+
+    h2 {
+      font-family: "beon";
+      font-size: 3em;
+      text-align: center;
+
+      &.hyellow {
+        text-shadow: 0 0 15px #FFA136;
+      }
+      &.hblue {
+        text-shadow: 0 0 15px #36d7ff;
+      }
+      &.hgreen {
+        text-shadow: 0 0 15px #36ffb2;
+      }
+    }
   }
 
   .navbar {
@@ -189,17 +209,17 @@ export default {
         left: 0;
         width: 0;
         height: 0;
-        border-top: 26vw solid #281853;
-        border-right: 33vw solid transparent;
+        border-top: 35vw solid #281853;
+        border-right: 40vw solid transparent;
         filter: drop-shadow(0 0 1px white);
       }
 
       object {
         position: absolute;
-        top: 3.5vw;
-        left: 3.5vw;
+        top: 4vw;
+        left: 4vw;
         width: auto;
-        height: 12vw;
+        height: 14vw;
       }
 
       &.is-shrink {
@@ -208,13 +228,18 @@ export default {
           border-right-width: 18vw;
           opacity: 0;
         }
-
         object {
-          position: absolute;
-          top: 1.5vw;
-          left: 1.5vw;
-          width: auto;
-          height: 4vw;
+          @include desktop {
+            position: absolute;
+            top: 1.5vw;
+            left: 1.5vw;
+            width: auto;
+            height: 4vw;
+          }
+
+          @include mobile {
+            opacity: 0;
+          }
         }
       }
     }
@@ -247,13 +272,22 @@ export default {
 
   .heading {
     width: 100%;
-    height: 75vh;
+    height: 100vh;
     padding-top: 25vh;
 
     h1 {
       font-family: "beon";
       font-size: 4.5em;
       text-shadow: 0 0 15px #E23EFF;
+    }
+
+    @include mobile {
+      padding-top: 10vh;
+      
+      h1 {
+        font-size: 2.75em;
+        line-height: 1.3;
+      }
     }
   }
 
