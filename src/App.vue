@@ -10,9 +10,9 @@
       <!-- Menu -->
       <scrollactive :offset="80" class="menu is-hidden-mobile" @itemchanged="onSectionChanged">
         <a href="#title" class="scrollactive-item" style="display: none;"></a>
-        <a href="#events" class="scrollactive-item r-line">EVENTS</a>
-        <a href="#speakers" class="scrollactive-item r-line">SPEAKERS</a>
-        <a href="#supporters" class="scrollactive-item">SUPPORTERS</a>
+        <a href="#events" class="scrollactive-item r-line" @click="logoActive = false">EVENTS</a>
+        <a href="#speakers" class="scrollactive-item r-line" @click="logoActive = false">SPEAKERS</a>
+        <a href="#supporters" class="scrollactive-item" @click="logoActive = false">SUPPORTERS</a>
       </scrollactive><!-- End of Menu -->
     </div><!-- End of Navbar -->
 
@@ -148,6 +148,9 @@ export default {
         this.logoActive = true
       }
     },
+    deactivateLogo() {
+      console.log("FIRE")
+    }
   },
 }
 </script>
@@ -241,6 +244,7 @@ export default {
         border-top: 35vw solid #281853;
         border-right: 40vw solid transparent;
         filter: drop-shadow(0 0 1px white);
+        transition: all .5s;
       }
 
       object {
@@ -249,6 +253,7 @@ export default {
         left: 4vw;
         width: auto;
         height: 14vw;
+        transition: all .5s;
       }
 
       &.is-shrink {
@@ -282,6 +287,7 @@ export default {
         border: 0 solid white;
         text-decoration: none;
         color: white;
+        transition: all .2s;
 
         &.r-line {
            border-right-width: 1px;
@@ -377,7 +383,9 @@ export default {
             bottom: 20px;
             width: 100%;
             text-align: center;
-            display: none;
+            display: block;
+            opacity: 0;
+            transition: opacity .3s;
 
             p {
               margin: 0;
@@ -398,8 +406,7 @@ export default {
             }
 
             .label {
-              display: block;
-              text-align: center;
+              opacity: 1;
             }
           }
         }
@@ -412,6 +419,7 @@ export default {
           background-size: auto 173.2051px;
           background-position: center;
           margin: 28px 8px;
+          transition: opacity .3s;
         }
 
         .hexTop,
