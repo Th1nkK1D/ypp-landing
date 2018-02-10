@@ -62,9 +62,15 @@
 
       <div class="row" v-for="(col, c) in speakers" :key="c">
         <!-- <div class="spcon" v-for="(speaker, s) in col" :key="s">{{speaker}}</div> -->
-        <div class="hexagon" v-for="(speaker, s) in col" :key="s" :style="'background-image: url(https://www.w3schools.com/howto/img_avatar.png);'">
-          <div class="hexTop"></div>
-          <div class="hexBottom"></div>
+        <div class="cell" v-for="(speaker, s) in col" :key="s">
+          <div class="hexagon" :style="'background-image: url(' + speaker.avatar + '); filter: drop-shadow(0 0 4px ' + events[speaker.event].color + ');'">
+            <div class="hexTop"></div>
+            <div class="hexBottom"></div>
+          </div>
+          <div class="label">
+            <strong>{{speaker.name}}</strong>
+            <p>{{speaker.pos}}</p>
+          </div>
         </div>
       </div>
     </div><!-- End of Speakers -->
@@ -89,7 +95,19 @@ export default {
         { date: "June 2018", name: "YOUNG SOCIAL IMPACT MAKER", color: "#77c8b9" },
       ],
       speakers: [
-        [11,12],[21,22,23],[31,32]
+        [
+          { name: "nono", pos: "manager", avatar: "https://www.w3schools.com/howto/img_avatar.png", event: 0 },
+          { name: "dfgdtg", pos: "manager", avatar: "https://www.w3schools.com/w3images/avatar2.png", event: 1 },
+        ],
+        [
+          { name: "nono", pos: "manager", avatar: "https://www.w3schools.com/howto/img_avatar.png", event: 1 },
+          { name: "dfgdtg", pos: "manager", avatar: "https://www.w3schools.com/w3images/avatar2.png", event: 1 },
+          { name: "oiuhiohoiu", pos: "manager", avatar: "https://www.w3schools.com/w3images/avatar2.png", event: 2 },
+        ],
+        [
+          { name: "nono", pos: "manager", avatar: "https://www.w3schools.com/w3images/avatar2.png", event: 2 },
+          { name: "dfgdtg", pos: "manager", avatar: "https://www.w3schools.com/howto/img_avatar.png", event: 3 },
+        ]
       ]
     }
   }
@@ -243,6 +261,35 @@ export default {
       display: flex;
       justify-content: center;
 
+      .cell {
+        position: relative;
+
+        .label {
+          position: absolute;
+          z-index: 5;
+          bottom: 20px;
+          width: 100%;
+          text-align: center;
+          display: none;
+
+          p {
+            font-size: 0.8em;
+            margin: 0;
+          }
+        }
+
+        &:hover {
+          .hexagon {
+            opacity: 0.3;
+          }
+
+          .label {
+            display: block;
+            text-align: center;
+          }
+        }
+      }
+
       .hexagon {
         position: relative;
         width: 150px; 
@@ -250,7 +297,7 @@ export default {
         margin: 43.30px 0;
         background-size: auto 173.2051px;
         background-position: center;
-        margin: 25px 5px;
+        margin: 28px 8px;
       }
 
       .hexTop,
