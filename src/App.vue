@@ -62,17 +62,37 @@
     <!-- Speakers -->
     <div class="section speakers" id="speakers">
       <h2 class="hblue">SPEAKERS</h2>
-
-      <div class="row" v-for="(col, c) in speakers" :key="c">
-        <!-- <div class="spcon" v-for="(speaker, s) in col" :key="s">{{speaker}}</div> -->
-        <div class="cell" v-for="(speaker, s) in col" :key="s">
-          <div class="hexagon" :style="'background-image: url(' + speaker.avatar + '); filter: drop-shadow(0 0 4px ' + events[speaker.event].color + ');'">
-            <div class="hexTop"></div>
-            <div class="hexBottom"></div>
+      <div class="speaker-wrap is-hidden-mobile">
+        <div class="row" v-for="(col, c) in speakers" :key="c">
+          <div class="cell" v-for="(speaker, s) in col" :key="s" onclick="">
+            <div class="hexagon" :style="'background-image: url(' + speaker.avatar + '); filter: drop-shadow(0 0 4px ' + events[speaker.event].color + ');'">
+              <div class="hexTop"></div>
+              <div class="hexBottom"></div>
+            </div>
+            <div class="label">
+              <p class="name">{{speaker.name}}</p>
+              <p class="pos">{{speaker.pos}}</p>
+            </div>
           </div>
-          <div class="label">
-            <strong>{{speaker.name}}</strong>
-            <p>{{speaker.pos}}</p>
+        </div>
+      </div>
+      <div class="speaker-wrap is-hidden-tablet">
+        <div class="row" v-for="(speaker, s) in flattenedSpeakers" :key="s">
+          <div v-if="s%4 == 1" class="cell">
+            <div class="hexagon" style="visible: hidden;"></div>
+          </div>
+          <div class="cell" onclick="">
+            <div class="hexagon" :style="'background-image: url(' + speaker.avatar + '); filter: drop-shadow(0 0 _px ' + events[speaker.event].color + ');'">
+              <div class="hexTop"></div>
+              <div class="hexBottom"></div>
+            </div>
+            <div class="label">
+              <p class="name">{{speaker.name}}</p>
+              <p class="pos">{{speaker.pos}}</p>
+            </div>
+          </div>
+          <div v-if="s%4 == 3" class="cell">
+            <div class="hexagon" style="visible: hidden;"></div>
           </div>
         </div>
       </div>
@@ -80,7 +100,7 @@
 
     <!-- Sponsors -->
     <div class="section sponsors" id="supporters">
-      <h2 class="hgreen">Supporter</h2>
+      <h2 class="hgreen">Supporters</h2>
     </div><!-- End of Sponsors -->
 
   </div>
@@ -113,6 +133,11 @@ export default {
           { name: "dfgdtg", pos: "manager", avatar: "https://www.w3schools.com/howto/img_avatar.png", event: 3 },
         ]
       ]
+    }
+  },
+  computed: {
+    flattenedSpeakers() {
+      return [].concat(...this.speakers)
     }
   },
   methods: {
@@ -191,6 +216,10 @@ export default {
       }
       &.hgreen {
         text-shadow: 0 0 15px #36ffb2;
+      }
+
+      @include mobile {
+        font-size: 2.5em;
       }
     }
   }
@@ -322,109 +351,175 @@ export default {
         margin: 10px 0 0 0;
         font-size: 1.8em;
         line-height: 1.2;
+
+        @include mobile {
+          font-size: 1.5em;
+        }
       }
     }
   }
 
   .speakers {
-    .row {
-      display: flex;
-      justify-content: center;
+    .speaker-wrap {
+      margin: 20px 0;
 
-      .cell {
-        position: relative;
+      .row {
+        display: flex;
+        justify-content: center;
 
-        .label {
-          position: absolute;
-          z-index: 5;
-          bottom: 20px;
-          width: 100%;
-          text-align: center;
-          display: none;
-
-          p {
-            font-size: 0.8em;
-            margin: 0;
-          }
-        }
-
-        &:hover {
-          .hexagon {
-            opacity: 0.3;
-          }
+        .cell {
+          position: relative;
+          color: white;
 
           .label {
-            display: block;
+            position: absolute;
+            z-index: 5;
+            bottom: 20px;
+            width: 100%;
             text-align: center;
+            display: none;
+
+            p {
+              margin: 0;
+
+              &.name {
+                font-weight: bold;
+              }
+
+              &.pos {
+                font-size: 0.8em;
+              }
+            }
+          }
+
+          &:hover {
+            .hexagon {
+              opacity: 0.3;
+            }
+
+            .label {
+              display: block;
+              text-align: center;
+            }
           }
         }
-      }
 
-      .hexagon {
-        position: relative;
-        width: 150px; 
-        height: 86.60px;
-        margin: 43.30px 0;
-        background-size: auto 173.2051px;
-        background-position: center;
-        margin: 28px 8px;
-      }
+        .hexagon {
+          position: relative;
+          width: 150px; 
+          height: 86.60px;
+          margin: 43.30px 0;
+          background-size: auto 173.2051px;
+          background-position: center;
+          margin: 28px 8px;
+        }
 
-      .hexTop,
-      .hexBottom {
-        position: absolute;
-        z-index: 1;
-        width: 106.07px;
-        height: 106.07px;
-        overflow: hidden;
-        -webkit-transform: scaleY(0.5774) rotate(-45deg);
-        -ms-transform: scaleY(0.5774) rotate(-45deg);
-        transform: scaleY(0.5774) rotate(-45deg);
-        background: inherit;
-        left: 21.97px;
-      }
+        .hexTop,
+        .hexBottom {
+          position: absolute;
+          z-index: 1;
+          width: 106.07px;
+          height: 106.07px;
+          overflow: hidden;
+          -webkit-transform: scaleY(0.5774) rotate(-45deg);
+          -ms-transform: scaleY(0.5774) rotate(-45deg);
+          transform: scaleY(0.5774) rotate(-45deg);
+          background: inherit;
+          left: 21.97px;
+        }
 
-      /*counter transform the bg image on the caps*/
-      .hexTop:after,
-      .hexBottom:after {
-        content: "";
-        position: absolute;
-        width: 150.0000px;
-        height: 86.60254037844388px;
-        -webkit-transform:  rotate(45deg) scaleY(1.7321) translateY(-43.3013px);
-        -ms-transform:      rotate(45deg) scaleY(1.7321) translateY(-43.3013px);
-        transform:          rotate(45deg) scaleY(1.7321) translateY(-43.3013px);
-        -webkit-transform-origin: 0 0;
-        -ms-transform-origin: 0 0;
-        transform-origin: 0 0;
-        background: inherit;
-      }
+        /*counter transform the bg image on the caps*/
+        .hexTop:after,
+        .hexBottom:after {
+          content: "";
+          position: absolute;
+          width: 150.0000px;
+          height: 86.60254037844388px;
+          -webkit-transform:  rotate(45deg) scaleY(1.7321) translateY(-43.3013px);
+          -ms-transform:      rotate(45deg) scaleY(1.7321) translateY(-43.3013px);
+          transform:          rotate(45deg) scaleY(1.7321) translateY(-43.3013px);
+          -webkit-transform-origin: 0 0;
+          -ms-transform-origin: 0 0;
+          transform-origin: 0 0;
+          background: inherit;
+        }
 
-      .hexTop {
-        top: -53.0330px;
-      }
+        .hexTop {
+          top: -53.0330px;
+        }
 
-      .hexTop:after {
-        background-position: center top;
-      }
+        .hexTop:after {
+          background-position: center top;
+        }
 
-      .hexBottom {
-        bottom: -53.0330px;
-      }
+        .hexBottom {
+          bottom: -53.0330px;
+        }
 
-      .hexBottom:after {
-        background-position: center bottom;
-      }
+        .hexBottom:after {
+          background-position: center bottom;
+        }
 
-      .hexagon:after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 150.0000px;
-        height: 86.6025px;
-        z-index: 2;
-        background: inherit;
+        .hexagon:after {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 150.0000px;
+          height: 86.6025px;
+          z-index: 2;
+          background: inherit;
+        }
+
+        @include mobile {
+          .hexagon {
+            width: 100px; 
+            height: 57.74px;
+            margin: 28.87px 0;
+            background-size: auto 115.4701px;
+            margin: 21px 6px;
+          }
+
+          .hexTop,
+          .hexBottom {
+            width: 70.71px;
+            height: 70.71px;
+            left: 14.64px;
+          }
+
+          /*counter transform the bg image on the caps*/
+          .hexTop:after,
+          .hexBottom:after {
+            width: 100.0000px;
+            height: 57.73502691896258px;
+            -webkit-transform:  rotate(45deg) scaleY(1.7321) translateY(-28.8675px);
+            -ms-transform:      rotate(45deg) scaleY(1.7321) translateY(-28.8675px);
+            transform:          rotate(45deg) scaleY(1.7321) translateY(-28.8675px);
+          }
+
+          .hexTop {
+            top: -35.3553px;
+          }
+
+          .hexTop:after {
+            background-position: center top;
+          }
+
+          .hexBottom {
+            bottom: -35.3553px;
+          }
+
+          .hexBottom:after {
+            background-position: center bottom;
+          }
+
+          .hexagon:after {
+            top: 0.0000px;
+            left: 0;
+            width: 100.0000px;
+            height: 57.7350px;
+          }
+        }
       }
     }
   }
