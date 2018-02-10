@@ -31,64 +31,52 @@
     </div>
     <!-- End of Heading -->
 
+  <!-- Events timeline -->
     <div class="scenter timeline">
       <h2 class="hyellow">EVENTS</h2>
+
       <div class="columns is-gapless is-mobile">
         <div class="column is-6 dash d-bottom d-right"> </div>
         <div class="column is-6"></div>
       </div>
-      <div class="columns is-gapless dash d-bottom d-left">
-        <div class="column is-6">
+      <!-- Event -->
+      <div v-for="(event, e) in events" :key="e" :class="'columns is-gapless dash ' + (e < events.length-1 ? 'd-bottom ' : '') + (e%2 === 0 ? 'd-left' : 'd-right')">
+        <div v-if="e%2 !== 0" class="column"></div>
+        <div class="column">
           <div class="event">
-            30 March - 1 April 2018
-            <p style="color: #eee93b">YOUNG LEAN ENTREPRENEUR</p>
+            {{event.date}}
+            <p :style="'color: ' + event.color">{{event.name}}</p>
           </div>
         </div>
-        <div class="column is-6"></div>
-      </div>
-      <div class="columns is-gapless dash d-bottom d-right">
-        <div class="column is-6"></div>
-        <div class="column is-6">
-          <div class="event">
-            6 April - 8 April 2018 
-            <p style="color: #f8a28c">YOUNG DIGITAL MARKETEER </p>
-          </div>
-        </div>
-      </div>
-      <div class="columns is-gapless dash d-bottom d-left">
-        <div class="column is-6">
-          <div class="event">
-            20 April - 22 April 2018
-            <p style="color: #97d3de">YOUNG INNOVATION CREATOR</p>
-          </div>
-        </div>
-        <div class="column is-6"></div>
-      </div>
-      <div class="columns is-gapless">
-        <div class="column is-6"></div>
-        <div class="column is-6 dash d-bottom d-right">
-          <div class="event">
-            June 2018
-            <p style="color: #77c8b9">YOUNG SOCIAL IMPACT MAKER</p>
-          </div>
-        </div>
-      </div>
+        <div v-if="e%2 === 0" class="column"></div>
+      </div><!-- End of Event -->
       <div class="columns is-gapless is-mobile">
         <div class="column is-6"></div>
-        <div class="column is-6 dash d-left"></div>
+        <div class="column is-6 dash d-left d-top"></div>
       </div>
-    </div>
+    </div><!-- End of Events timeline -->
 
-    <!-- <div class="scenter">
-      <h2 class="hgreen">ABOUT US</h2>
-      <p>Ever wondered how some graphic designers always manage to produce beautiful looking designs for their brochures, website designs, logo designs? Talent…yes, it helps but there are a handful of more important things you can do that will have even complete beginners producing award winning design.</p>
-    </div> -->
+    <!-- Speakers -->
+    <div class="scenter">
+      <h2 class="hgreen">SPEAKERS</h2>
+    </div>
+    <!-- Speakers -->
   </div>
 </template>
 
 <script>
 export default {
   name: 'App',
+  data() {
+    return {
+      events: [
+        { date: "30 March - 1 April 2018", name: "YOUNG LEAN ENTREPRENEUR", color: "#eee93b" },
+        { date: "6 April - 8 April 2018", name: "YOUNG DIGITAL MARKETEER", color: "#f8a28c" },
+        { date: "20 April - 22 April 2018", name: "YOUNG INNOVATION CREATOR", color: "#97d3de" },
+        { date: "June 2018", name: "YOUNG SOCIAL IMPACT MAKER", color: "#77c8b9" },
+      ]
+    }
+  }
 }
 </script>
 
@@ -210,6 +198,10 @@ export default {
 
       &.d-bottom {
         border-bottom-width: 1px;
+      }
+
+      &.d-top {
+        border-top-width: 1px;
       }
     }
 
