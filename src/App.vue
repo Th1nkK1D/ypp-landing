@@ -8,11 +8,11 @@
       </div> -->
 
       <!-- Menu -->
-      <div class="menu">
-        <a href="#" v-scroll-to="'#events'" class="r-line">EVENTS</a>
-        <a href="#" v-scroll-to="'#speakers'" class="r-line">SPEAKERS</a>
-        <a href="#" v-scroll-to="'#supporters'">SUPPORTERS</a>
-      </div><!-- End of Menu -->
+      <scrollactive :offset="80" class="menu">
+        <a href="#events" class="scrollactive-item r-line">EVENTS</a>
+        <a href="#speakers" class="scrollactive-item r-line">SPEAKERS</a>
+        <a href="#supporters" class="scrollactive-item">SUPPORTERS</a>
+      </scrollactive><!-- End of Menu -->
     </div><!-- End of Navbar -->
 
     <!-- Heading -->
@@ -197,7 +197,7 @@ export default {
       padding: 25px;
 
       a {
-        padding: 5px 15px;
+        padding: 5px 15px 5px 12px;
         margin: 10px 0;
         border: 0 solid white;
         text-decoration: none;
@@ -205,6 +205,14 @@ export default {
 
         &.r-line {
            border-right-width: 1px;
+        }
+
+        &:hover {
+          color: rgba(255,255,255,0.7);
+        }
+
+        &.is-active {
+          font-weight: bold;
         }
        
       }
