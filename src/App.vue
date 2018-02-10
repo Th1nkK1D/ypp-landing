@@ -32,7 +32,7 @@
     <!-- End of Heading -->
 
   <!-- Events timeline -->
-    <div class="scenter timeline">
+    <div class="section timeline">
       <h2 class="hyellow">EVENTS</h2>
 
       <div class="columns is-gapless is-mobile">
@@ -57,10 +57,23 @@
     </div><!-- End of Events timeline -->
 
     <!-- Speakers -->
-    <div class="scenter">
-      <h2 class="hgreen">SPEAKERS</h2>
-    </div>
-    <!-- Speakers -->
+    <div class="section speakers">
+      <h2 class="hblue">SPEAKERS</h2>
+
+      <div class="row" v-for="(col, c) in speakers" :key="c">
+        <!-- <div class="spcon" v-for="(speaker, s) in col" :key="s">{{speaker}}</div> -->
+        <div class="hexagon" v-for="(speaker, s) in col" :key="s" :style="'background-image: url(https://www.w3schools.com/howto/img_avatar.png);'">
+          <div class="hexTop"></div>
+          <div class="hexBottom"></div>
+        </div>
+      </div>
+    </div><!-- End of Speakers -->
+
+    <!-- Sponsors -->
+    <div class="section sponsors">
+      <h2 class="hgreen">Sponsors</h2>
+    </div><!-- End of Sponsors -->
+
   </div>
 </template>
 
@@ -74,6 +87,9 @@ export default {
         { date: "6 April - 8 April 2018", name: "YOUNG DIGITAL MARKETEER", color: "#f8a28c" },
         { date: "20 April - 22 April 2018", name: "YOUNG INNOVATION CREATOR", color: "#97d3de" },
         { date: "June 2018", name: "YOUNG SOCIAL IMPACT MAKER", color: "#77c8b9" },
+      ],
+      speakers: [
+        [11,12],[21,22,23],[31,32]
       ]
     }
   }
@@ -83,12 +99,11 @@ export default {
 <style lang="scss">
   @import "../node_modules/bulma/sass/utilities/_all";
   @import "../node_modules/bulma/sass/grid/columns";
-  @import "../node_modules/bulma/sass/layout/section.sass";
 
   @import "./assets/fonts/fonts.scss";
 
   body {
-    background: linear-gradient(-15deg, #093038, #260933, #260933);
+    background: linear-gradient(165deg, #260933, #093038);
     color: white;
     font-family: "cloud";
     font-size: 18px;
@@ -99,17 +114,21 @@ export default {
   h2 {
     font-family: "beon";
     font-size: 3em;
+    text-align: center;
 
     &.hyellow {
       text-shadow: 0 0 15px #FFA136;
     }
+    &.hblue {
+      text-shadow: 0 0 15px #36d7ff;
+    }
     &.hgreen {
-      text-shadow: 0 0 15px #36FDFF;
+      text-shadow: 0 0 15px #36ffb2;
     }
   }
 
   .btn-prim {
-    background: linear-gradient(-100deg, #00769b, #022088);;
+    background: linear-gradient(100deg, #022088, #00769b);
     color: white;
     font-size: 1em;
     font-weight: bold;
@@ -118,6 +137,14 @@ export default {
     border-radius: 25px;
     border: 1px solid white;
     filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.5));
+  }
+
+  .is-gapless {
+    margin: 0 !important;
+  }
+
+  .section {
+    padding: 20px 10vw;
   }
 
   .navbar {
@@ -177,12 +204,6 @@ export default {
   }
 
   .timeline {
-    padding: 0 10vw;
-
-    .columns {
-      margin: 0 !important;
-    }
-
     .dash {
       border: 0 dashed white;
       box-sizing: border-box;
@@ -217,8 +238,78 @@ export default {
     }
   }
 
-  .scenter {
-    text-align: center;
+  .speakers {
+    .row {
+      display: flex;
+      justify-content: center;
+
+      .hexagon {
+        position: relative;
+        width: 150px; 
+        height: 86.60px;
+        margin: 43.30px 0;
+        background-size: auto 173.2051px;
+        background-position: center;
+        margin: 25px 5px;
+      }
+
+      .hexTop,
+      .hexBottom {
+        position: absolute;
+        z-index: 1;
+        width: 106.07px;
+        height: 106.07px;
+        overflow: hidden;
+        -webkit-transform: scaleY(0.5774) rotate(-45deg);
+        -ms-transform: scaleY(0.5774) rotate(-45deg);
+        transform: scaleY(0.5774) rotate(-45deg);
+        background: inherit;
+        left: 21.97px;
+      }
+
+      /*counter transform the bg image on the caps*/
+      .hexTop:after,
+      .hexBottom:after {
+        content: "";
+        position: absolute;
+        width: 150.0000px;
+        height: 86.60254037844388px;
+        -webkit-transform:  rotate(45deg) scaleY(1.7321) translateY(-43.3013px);
+        -ms-transform:      rotate(45deg) scaleY(1.7321) translateY(-43.3013px);
+        transform:          rotate(45deg) scaleY(1.7321) translateY(-43.3013px);
+        -webkit-transform-origin: 0 0;
+        -ms-transform-origin: 0 0;
+        transform-origin: 0 0;
+        background: inherit;
+      }
+
+      .hexTop {
+        top: -53.0330px;
+      }
+
+      .hexTop:after {
+        background-position: center top;
+      }
+
+      .hexBottom {
+        bottom: -53.0330px;
+      }
+
+      .hexBottom:after {
+        background-position: center bottom;
+      }
+
+      .hexagon:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 150.0000px;
+        height: 86.6025px;
+        z-index: 2;
+        background: inherit;
+      }
+    }
   }
 </style>
 
