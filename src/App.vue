@@ -128,7 +128,7 @@ export default {
   @import "../node_modules/bulma/sass/utilities/_all";
   @import "../node_modules/bulma/sass/grid/columns";
 
-  @import "./assets/fonts/fonts.scss";
+  @import "./assets/fonts.scss";
 
   body {
     background: linear-gradient(165deg, #260933, #093038);
