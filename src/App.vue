@@ -9,9 +9,9 @@
 
       <!-- Menu -->
       <div class="menu">
-        <a class="r-line">EVENTS</a>
-        <a class="r-line">SPEAKERS</a>
-        <a>SUPPORTERS</a>
+        <a href="#" v-scroll-to="'#events'" class="r-line">EVENTS</a>
+        <a href="#" v-scroll-to="'#speakers'" class="r-line">SPEAKERS</a>
+        <a href="#" v-scroll-to="'#supporters'">SUPPORTERS</a>
       </div><!-- End of Menu -->
     </div><!-- End of Navbar -->
 
@@ -32,7 +32,7 @@
     <!-- End of Heading -->
 
   <!-- Events timeline -->
-    <div class="section timeline">
+    <div class="section timeline" id="events">
       <h2 class="hyellow">EVENTS</h2>
 
       <div class="columns is-gapless is-mobile">
@@ -57,7 +57,7 @@
     </div><!-- End of Events timeline -->
 
     <!-- Speakers -->
-    <div class="section speakers">
+    <div class="section speakers" id="speakers">
       <h2 class="hblue">SPEAKERS</h2>
 
       <div class="row" v-for="(col, c) in speakers" :key="c">
@@ -76,8 +76,8 @@
     </div><!-- End of Speakers -->
 
     <!-- Sponsors -->
-    <div class="section sponsors">
-      <h2 class="hgreen">Sponsors</h2>
+    <div class="section sponsors" id="supporters">
+      <h2 class="hgreen">Supporter</h2>
     </div><!-- End of Sponsors -->
 
   </div>
@@ -200,6 +200,8 @@ export default {
         padding: 5px 15px;
         margin: 10px 0;
         border: 0 solid white;
+        text-decoration: none;
+        color: white;
 
         &.r-line {
            border-right-width: 1px;
