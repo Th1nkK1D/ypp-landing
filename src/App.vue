@@ -2,13 +2,13 @@
   <div id="app">
     <!-- Navbar -->
     <div class="navbar">
-      <!-- <div class="icon">
+      <div :class="'icon' + (logoActive ? '' : ' is-shrink')">
         <div class="triangle"></div>
         <object type="image/svg+xml" data="/static/logoypp.svg"></object>
-      </div> -->
+      </div>
 
       <!-- Menu -->
-      <scrollactive :offset="80" class="menu">
+      <scrollactive :offset="80" class="menu" @itemchanged="onSectionChanged">
         <a href="#events" class="scrollactive-item r-line">EVENTS</a>
         <a href="#speakers" class="scrollactive-item r-line">SPEAKERS</a>
         <a href="#supporters" class="scrollactive-item">SUPPORTERS</a>
@@ -88,6 +88,7 @@ export default {
   name: 'App',
   data() {
     return {
+      logoActive: true,
       events: [
         { date: "30 March - 1 April 2018", name: "YOUNG LEAN ENTREPRENEUR", color: "#eee93b" },
         { date: "6 April - 8 April 2018", name: "YOUNG DIGITAL MARKETEER", color: "#f8a28c" },
@@ -110,7 +111,16 @@ export default {
         ]
       ]
     }
-  }
+  },
+  methods: {
+    onSectionChanged(event, currentItem, lastActiveItem) {
+      if(lastActiveItem == null) {
+        this.logoActive = false
+      } else if(currentItem == null) {
+        this.logoActive = true
+      }
+    },
+  },
 }
 </script>
 
@@ -179,8 +189,8 @@ export default {
         left: 0;
         width: 0;
         height: 0;
-        border-top: 30vw solid #281853;
-        border-right: 35vw solid transparent;
+        border-top: 26vw solid #281853;
+        border-right: 33vw solid transparent;
         filter: drop-shadow(0 0 1px white);
       }
 
@@ -190,6 +200,22 @@ export default {
         left: 3.5vw;
         width: auto;
         height: 12vw;
+      }
+
+      &.is-shrink {
+        .triangle {
+          border-top-width: 15vw;
+          border-right-width: 18vw;
+          opacity: 0;
+        }
+
+        object {
+          position: absolute;
+          top: 1.5vw;
+          left: 1.5vw;
+          width: auto;
+          height: 4vw;
+        }
       }
     }
 
