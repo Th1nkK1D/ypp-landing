@@ -40,12 +40,25 @@
 
       <!-- Event -->
       <div v-for="(event, e) in events" :key="e" :class="'columns is-gapless dash ' + (e < events.length-1 ? 'd-bottom ' : '') + (e%2 === 0 ? 'd-left' : 'd-right')">
-        <div v-if="e%2 !== 0" class="column"></div>
+        <div  v-if="e%2 !== 0" class="column"></div>
 
         <div class="column">
-          <div class="event">
-            {{event.date}}
-            <p :style="'color: ' + event.color">{{event.name}}</p>
+          <div class="columns is-gapless is-mobile">
+            <div v-if="e%2 !== 0" class="column is-narrow expander" :style="'color: ' + event.color">
+              <span>&lt;</span>
+            </div>
+            <div class="column">
+              <div class="event">
+                {{event.date}}
+                <p class="title" :style="'color: ' + event.color">{{event.name}}</p>
+                <p>Some kind of foocking description</p>
+                <br>
+                <button class="btn-prim">JOIN US</button>
+              </div>
+            </div>
+            <div v-if="e%2 === 0" class="column is-narrow expander" :style="'color: ' + event.color">
+              <span>&gt;</span>
+            </div>
           </div>
         </div>
 
@@ -121,14 +134,16 @@ export default {
   }
 
   .btn-prim {
-    color: black;
     font-size: 0.8em;
     font-weight: bold;
     height: 40px;
     width: 140px;
     border-radius: 18px;
     border: 1px solid white;
+    color: white;
+    background: transparent;
     filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.5));
+    transition: all .5s;
   }
 
   .is-gapless {
@@ -295,14 +310,30 @@ export default {
       padding: 20px 30px;
       text-align: left;
 
-      p {
-        margin: 10px 0 0 0;
+      .title {
+        margin: 10px 0;
         font-size: 1.8em;
         line-height: 1.2;
 
         @include mobile {
           font-size: 1.5em;
         }
+      }
+    }
+
+    .expander {
+      font-size: 1.8em;
+      padding: 5px;
+      display: flex;
+      justify-content: center;
+      opacity: 0.6;
+
+      span {
+        margin: auto;
+      }
+
+      &:hover {
+        opacity: 1;
       }
     }
   }
