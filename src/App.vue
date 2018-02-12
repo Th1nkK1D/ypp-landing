@@ -7,13 +7,10 @@
         <object type="image/svg+xml" data="/static/logoypp.svg"></object>
       </div>
 
-      <!-- Menu -->
-      <scrollactive :offset="80" class="menu is-hidden-mobile" @itemchanged="onSectionChanged">
-        <a href="#title" class="scrollactive-item" style="display: none;"></a>
-        <a href="#events" class="scrollactive-item r-line" @click="logoActive = false">EVENTS</a>
-        <a href="#speakers" class="scrollactive-item r-line" @click="logoActive = false">SPEAKERS</a>
-        <a href="#supporters" class="scrollactive-item" @click="logoActive = false">SUPPORTERS</a>
-      </scrollactive><!-- End of Menu -->
+      <!-- Scrollspy -->
+      <scrollactive :offset="80" class="menu is-hidden-mobile" @itemchanged="onSectionChanged" style="display: none;">
+        <a href="#title" class="scrollactive-item"></a>
+      </scrollactive><!-- End of Scrollspy -->
     </div><!-- End of Navbar -->
 
     <!-- Heading -->
@@ -25,8 +22,6 @@
             <h1 id="title">Young Passionate Program</h1>
 
             <p>Ignite your passion. Surround with young talent. Informative workshop from experience mentor.</p>
-            <br>
-            <button class="btn-prim">JOIN US</button>
           </div>
           
         </div>
@@ -35,72 +30,37 @@
     <!-- End of Heading -->
 
   <!-- Events timeline -->
-    <div class="section timeline" id="events">
+    <div class="section timeline">
       <h2 class="hyellow">EVENTS</h2>
 
       <div class="columns is-gapless is-mobile">
         <div class="column is-6 dash d-bottom d-right"> </div>
         <div class="column is-6"></div>
       </div>
+
       <!-- Event -->
       <div v-for="(event, e) in events" :key="e" :class="'columns is-gapless dash ' + (e < events.length-1 ? 'd-bottom ' : '') + (e%2 === 0 ? 'd-left' : 'd-right')">
         <div v-if="e%2 !== 0" class="column"></div>
+
         <div class="column">
           <div class="event">
             {{event.date}}
             <p :style="'color: ' + event.color">{{event.name}}</p>
           </div>
         </div>
+
         <div v-if="e%2 === 0" class="column"></div>
       </div><!-- End of Event -->
+
       <div class="columns is-gapless is-mobile">
         <div class="column is-6"></div>
         <div class="column is-6 dash d-left d-top"></div>
       </div>
     </div><!-- End of Events timeline -->
 
-    <!-- Speakers -->
-    <div class="section speakers" id="speakers">
-      <h2 class="hblue">SPEAKERS</h2>
-      <div class="speaker-wrap is-hidden-mobile">
-        <div class="row" v-for="(col, c) in speakers" :key="c">
-          <div class="cell" v-for="(speaker, s) in col" :key="s" onclick="">
-            <div class="hexagon" :style="'background-image: url(' + speaker.avatar + '); filter: drop-shadow(0 0 4px ' + events[speaker.event].color + ');'">
-              <div class="hexTop"></div>
-              <div class="hexBottom"></div>
-            </div>
-            <div class="label">
-              <p class="name">{{speaker.name}}</p>
-              <p class="pos">{{speaker.pos}}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="speaker-wrap is-hidden-tablet">
-        <div class="row" v-for="(speaker, s) in flattenedSpeakers" :key="s">
-          <div v-if="s%4 == 1" class="cell">
-            <div class="hexagon" style="visible: hidden;"></div>
-          </div>
-          <div class="cell" onclick="">
-            <div class="hexagon" :style="'background-image: url(' + speaker.avatar + '); filter: drop-shadow(0 0 _px ' + events[speaker.event].color + ');'">
-              <div class="hexTop"></div>
-              <div class="hexBottom"></div>
-            </div>
-            <div class="label">
-              <p class="name">{{speaker.name}}</p>
-              <p class="pos">{{speaker.pos}}</p>
-            </div>
-          </div>
-          <div v-if="s%4 == 3" class="cell">
-            <div class="hexagon" style="visible: hidden;"></div>
-          </div>
-        </div>
-      </div>
-    </div><!-- End of Speakers -->
-
     <!-- Sponsors -->
     <div class="section sponsors" id="supporters">
-      <h2 class="hgreen">Supporters</h2>
+      <h2 class="hgreen">Sponsors</h2>
     </div><!-- End of Sponsors -->
 
   </div>
@@ -118,26 +78,6 @@ export default {
         { date: "20 April - 22 April 2018", name: "YOUNG INNOVATION CREATOR", color: "#97d3de" },
         { date: "June 2018", name: "YOUNG SOCIAL IMPACT MAKER", color: "#77c8b9" },
       ],
-      speakers: [
-        [
-          { name: "nono", pos: "manager", avatar: "https://www.w3schools.com/howto/img_avatar.png", event: 0 },
-          { name: "dfgdtg", pos: "manager", avatar: "https://www.w3schools.com/w3images/avatar2.png", event: 1 },
-        ],
-        [
-          { name: "nono", pos: "manager", avatar: "https://www.w3schools.com/howto/img_avatar.png", event: 1 },
-          { name: "dfgdtg", pos: "manager", avatar: "https://www.w3schools.com/w3images/avatar2.png", event: 1 },
-          { name: "oiuhiohoiu", pos: "manager", avatar: "https://www.w3schools.com/w3images/avatar2.png", event: 2 },
-        ],
-        [
-          { name: "nono", pos: "manager", avatar: "https://www.w3schools.com/w3images/avatar2.png", event: 2 },
-          { name: "dfgdtg", pos: "manager", avatar: "https://www.w3schools.com/howto/img_avatar.png", event: 3 },
-        ]
-      ]
-    }
-  },
-  computed: {
-    flattenedSpeakers() {
-      return [].concat(...this.speakers)
     }
   },
   methods: {
@@ -148,9 +88,6 @@ export default {
         this.logoActive = true
       }
     },
-    deactivateLogo() {
-      console.log("FIRE")
-    }
   },
 }
 </script>
@@ -184,13 +121,12 @@ export default {
   }
 
   .btn-prim {
-    background: linear-gradient(100deg, #022088, #00769b);
-    color: white;
-    font-size: 1em;
+    color: black;
+    font-size: 0.8em;
     font-weight: bold;
-    height: 50px;
-    width: 200px;
-    border-radius: 25px;
+    height: 40px;
+    width: 140px;
+    border-radius: 18px;
     border: 1px solid white;
     filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.5));
   }
@@ -254,6 +190,12 @@ export default {
         width: auto;
         height: 14vw;
         transition: all .5s;
+
+        @include mobile {
+          height: 8vh;
+          top: 2vh;
+          left: 3vw;
+        }
       }
 
       &.is-shrink {
@@ -360,173 +302,6 @@ export default {
 
         @include mobile {
           font-size: 1.5em;
-        }
-      }
-    }
-  }
-
-  .speakers {
-    .speaker-wrap {
-      margin: 20px 0;
-
-      .row {
-        display: flex;
-        justify-content: center;
-
-        .cell {
-          position: relative;
-          color: white;
-
-          .label {
-            position: absolute;
-            z-index: 5;
-            bottom: 20px;
-            width: 100%;
-            text-align: center;
-            display: block;
-            opacity: 0;
-            transition: opacity .3s;
-
-            p {
-              margin: 0;
-
-              &.name {
-                font-weight: bold;
-              }
-
-              &.pos {
-                font-size: 0.8em;
-              }
-            }
-          }
-
-          &:hover {
-            .hexagon {
-              opacity: 0.3;
-            }
-
-            .label {
-              opacity: 1;
-            }
-          }
-        }
-
-        .hexagon {
-          position: relative;
-          width: 150px; 
-          height: 86.60px;
-          margin: 43.30px 0;
-          background-size: auto 173.2051px;
-          background-position: center;
-          margin: 28px 8px;
-          transition: opacity .3s;
-        }
-
-        .hexTop,
-        .hexBottom {
-          position: absolute;
-          z-index: 1;
-          width: 106.07px;
-          height: 106.07px;
-          overflow: hidden;
-          -webkit-transform: scaleY(0.5774) rotate(-45deg);
-          -ms-transform: scaleY(0.5774) rotate(-45deg);
-          transform: scaleY(0.5774) rotate(-45deg);
-          background: inherit;
-          left: 21.97px;
-        }
-
-        /*counter transform the bg image on the caps*/
-        .hexTop:after,
-        .hexBottom:after {
-          content: "";
-          position: absolute;
-          width: 150.0000px;
-          height: 86.60254037844388px;
-          -webkit-transform:  rotate(45deg) scaleY(1.7321) translateY(-43.3013px);
-          -ms-transform:      rotate(45deg) scaleY(1.7321) translateY(-43.3013px);
-          transform:          rotate(45deg) scaleY(1.7321) translateY(-43.3013px);
-          -webkit-transform-origin: 0 0;
-          -ms-transform-origin: 0 0;
-          transform-origin: 0 0;
-          background: inherit;
-        }
-
-        .hexTop {
-          top: -53.0330px;
-        }
-
-        .hexTop:after {
-          background-position: center top;
-        }
-
-        .hexBottom {
-          bottom: -53.0330px;
-        }
-
-        .hexBottom:after {
-          background-position: center bottom;
-        }
-
-        .hexagon:after {
-          content: "";
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 150.0000px;
-          height: 86.6025px;
-          z-index: 2;
-          background: inherit;
-        }
-
-        @include mobile {
-          .hexagon {
-            width: 100px; 
-            height: 57.74px;
-            margin: 28.87px 0;
-            background-size: auto 115.4701px;
-            margin: 21px 6px;
-          }
-
-          .hexTop,
-          .hexBottom {
-            width: 70.71px;
-            height: 70.71px;
-            left: 14.64px;
-          }
-
-          /*counter transform the bg image on the caps*/
-          .hexTop:after,
-          .hexBottom:after {
-            width: 100.0000px;
-            height: 57.73502691896258px;
-            -webkit-transform:  rotate(45deg) scaleY(1.7321) translateY(-28.8675px);
-            -ms-transform:      rotate(45deg) scaleY(1.7321) translateY(-28.8675px);
-            transform:          rotate(45deg) scaleY(1.7321) translateY(-28.8675px);
-          }
-
-          .hexTop {
-            top: -35.3553px;
-          }
-
-          .hexTop:after {
-            background-position: center top;
-          }
-
-          .hexBottom {
-            bottom: -35.3553px;
-          }
-
-          .hexBottom:after {
-            background-position: center bottom;
-          }
-
-          .hexagon:after {
-            top: 0.0000px;
-            left: 0;
-            width: 100.0000px;
-            height: 57.7350px;
-          }
         }
       }
     }
