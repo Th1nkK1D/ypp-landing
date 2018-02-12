@@ -23,7 +23,6 @@
 
             <p>Ignite your passion. Surround with young talent. Informative workshop from experience mentor.</p>
           </div>
-          
         </div>
       </div>
     </div>
@@ -39,9 +38,8 @@
       </div>
 
       <!-- Event -->
-      <div v-for="(event, e) in events" :key="e" :class="'columns is-gapless dash ' + (e < events.length-1 ? 'd-bottom ' : '') + (e%2 === 0 ? 'd-left' : 'd-right')">
-        <div  v-if="e%2 !== 0" class="column"></div>
-
+      <div v-for="(event, e) in events" :key="e" :class="'columns is-gapless ' + (e%2 !== 0 ? 'r-reverse' : '') + ' dash ' + (e < events.length-1 ? 'd-bottom ' : '') + (e%2 === 0 ? 'd-left' : 'd-right')">
+        <!-- Main content -->
         <div class="column">
           <div class="columns is-gapless is-mobile">
             <div v-if="e%2 !== 0" class="column is-narrow expander" :style="'color: ' + event.color">
@@ -51,7 +49,7 @@
               <div class="event">
                 {{event.date}}
                 <p class="title" :style="'color: ' + event.color">{{event.name}}</p>
-                <p>Some kind of foocking description</p>
+                <p>{{event.desc}}</p>
                 <br>
                 <button class="btn-prim">JOIN US</button>
               </div>
@@ -60,9 +58,25 @@
               <span>&gt;</span>
             </div>
           </div>
-        </div>
+        </div><!-- End of Main content -->
 
-        <div v-if="e%2 === 0" class="column"></div>
+        <!-- Expansion -->
+        <div class="column">
+          <div class="event">
+            <h3>Speakers</h3>
+
+            <div class="columns is-gapless is-multiline speakers">
+              <div class="speaker is-narrow" v-for="(speaker,s) in event.speakers" :key="s" onclick="">
+                <img :src="speaker.avatar" alt="">
+                <div class="label">
+                  <p class="name">{{speaker.name}}</p>
+                  <p class="pos">{{speaker.pos}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><!-- End of Expansion -->
+
       </div><!-- End of Event -->
 
       <div class="columns is-gapless is-mobile">
@@ -86,10 +100,35 @@ export default {
     return {
       logoActive: true,
       events: [
-        { date: "30 March - 1 April 2018", name: "YOUNG LEAN ENTREPRENEUR", color: "#eee93b" },
-        { date: "6 April - 8 April 2018", name: "YOUNG DIGITAL MARKETEER", color: "#f8a28c" },
-        { date: "20 April - 22 April 2018", name: "YOUNG INNOVATION CREATOR", color: "#97d3de" },
-        { date: "June 2018", name: "YOUNG SOCIAL IMPACT MAKER", color: "#77c8b9" },
+        { date: "30 March - 1 April 2018", name: "YOUNG LEAN ENTREPRENEUR", color: "#eee93b",
+          desc: "Some kind of foocking description",
+          speakers: [
+            { name: "ojnojn", pos: "test", avatar: "https://www.w3schools.com/howto/img_avatar.png"},
+            { name: "ojnojn", pos: "test", avatar: "https://www.w3schools.com/howto/img_avatar.png"},
+            { name: "ojnojn", pos: "test", avatar: "https://www.w3schools.com/howto/img_avatar.png"},
+          ]
+        },
+        { date: "6 April - 8 April 2018", name: "YOUNG DIGITAL MARKETEER", color: "#f8a28c", 
+          desc: "Some kind of foocking description",
+          speakers: [
+            { name: "ojnojn", pos: "test", avatar: "https://www.w3schools.com/howto/img_avatar.png"},
+            { name: "ojnojn", pos: "test", avatar: "https://www.w3schools.com/howto/img_avatar.png"},
+            { name: "ojnojn", pos: "test", avatar: "https://www.w3schools.com/howto/img_avatar.png"},
+          ]},
+        { date: "20 April - 22 April 2018", name: "YOUNG INNOVATION CREATOR", color: "#97d3de", 
+          desc: "Some kind of foocking description",
+          speakers: [
+            { name: "ojnojn", pos: "test", avatar: "https://www.w3schools.com/howto/img_avatar.png"},
+            { name: "ojnojn", pos: "test", avatar: "https://www.w3schools.com/howto/img_avatar.png"},
+            { name: "ojnojn", pos: "test", avatar: "https://www.w3schools.com/howto/img_avatar.png"},
+          ]},
+        { date: "June 2018", name: "YOUNG SOCIAL IMPACT MAKER", color: "#77c8b9", 
+          desc: "Some kind of foocking description",
+          speakers: [
+            { name: "ojnojn", pos: "test", avatar: "https://www.w3schools.com/howto/img_avatar.png"},
+            { name: "ojnojn", pos: "test", avatar: "https://www.w3schools.com/howto/img_avatar.png"},
+            { name: "ojnojn", pos: "test", avatar: "https://www.w3schools.com/howto/img_avatar.png"},
+          ]},
       ],
     }
   },
@@ -284,6 +323,10 @@ export default {
   }
 
   .timeline {
+    .r-reverse {
+      flex-direction: row-reverse;
+    }
+
     .dash {
       border: 0 dashed white;
       box-sizing: border-box;
@@ -317,6 +360,53 @@ export default {
 
         @include mobile {
           font-size: 1.5em;
+        }
+      }
+
+      h3 {
+        font-weight: bold;
+      }
+
+      .speakers {
+        .speaker {
+          text-align: center;
+          position: relative;
+
+          img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            filter: grayscale(1);
+            transition: all .5s;
+          }
+
+          .label {
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            opacity: 0;
+            line-height: 1.2;
+            transition: all .5s;
+
+            .name {
+              font-weight: bold;
+            }
+            
+            .pos {
+              font-size: 0.8em;
+            }
+          }
+
+          &:hover {
+            img {
+              filter: grayscale(0);
+              opacity: 0.5;
+            }
+
+            .label {
+              opacity: 1;
+            }
+          }
         }
       }
     }
