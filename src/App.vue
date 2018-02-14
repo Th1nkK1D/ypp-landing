@@ -6,11 +6,6 @@
         <div class="triangle is-hidden-mobile"></div>
         <object type="image/svg+xml" data="/static/logoypp.svg"></object>
       </div>
-
-      <!-- Scrollspy -->
-      <scrollactive :offset="80" class="menu is-hidden-mobile" @itemchanged="onSectionChanged" style="display: none;">
-        <a href="#title" class="scrollactive-item"></a>
-      </scrollactive><!-- End of Scrollspy -->
     </div><!-- End of Navbar -->
 
     <!-- Heading -->
@@ -22,6 +17,13 @@
             <h1 id="title">Young Passionate Program</h1>
             <br>
             <p>งานที่จะทำให้เยาวชนได้ใช้ศักยภาพของตนเองอย่างเต็มที่ พบปะเพื่อน ๆ หลากมหาวิทยาลัย และ พี่ ๆ จากบริษัทต่าง ๆ ที่จะเข้ามาแบ่งปันความรู้แบบไม่อั้น</p>
+            <br>
+            <!-- Scrollspy -->
+            <scrollactive :offset="40" @itemchanged="onSectionChanged">
+              <a href="#title" class="scrollactive-item" style="display: none;"></a>
+              <a href="#event" class="scrollactive-item learnmore" @click="logoActive = false">&#8675;</a>
+            </scrollactive><!-- End of Scrollspy -->
+            
           </div>
         </div>
       </div>
@@ -30,7 +32,7 @@
 
   <!-- Events timeline -->
     <div class="section timeline">
-      <h2 class="hyellow">EVENTS</h2>
+      <h2 class="hyellow" id="event">EVENTS</h2>
 
       <div class="columns is-gapless is-mobile">
         <div class="column is-6 dash d-bottom d-right"> </div>
@@ -153,10 +155,10 @@ export default {
   },
   methods: {
     onSectionChanged(event, currentItem, lastActiveItem) {
-      if(lastActiveItem == null) {
-        this.logoActive = false
-      } else if(currentItem == null) {
+      if(currentItem == null) {
         this.logoActive = true
+      } else {
+        this.logoActive = false
       }
     },
   },
@@ -334,6 +336,22 @@ export default {
       font-size: 4.5em;
       text-shadow: 0 0 15px #E23EFF;
       line-height: 1.2;
+    }
+
+    .scrollactive-nav {
+      .learnmore {
+        font-size: 3em;
+        color: white;
+        opacity: 0.6;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+
+      @include mobile {
+        text-align: right;
+      }
     }
 
     @include mobile {
