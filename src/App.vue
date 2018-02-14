@@ -20,8 +20,8 @@
         <div class="column">
           <div class="section">
             <h1 id="title">Young Passionate Program</h1>
-
-            <p>Ignite your passion. Surround with young talent. Informative workshop from experience mentor.</p>
+            <br>
+            <p>งานที่จะทำให้เยาวชนได้ใช้ศักยภาพของตนเองอย่างเต็มที่ พบปะเพื่อน ๆ หลากมหาวิทยาลัย และ พี่ ๆ จากบริษัทต่าง ๆ ที่จะเข้ามาแบ่งปันความรู้แบบไม่อั้น</p>
           </div>
         </div>
       </div>
@@ -48,7 +48,7 @@
                 <p class="title" :style="'color: ' + event.color">{{event.name}}</p>
                 <p>{{event.desc}}</p>
                 <br>
-                <button class="btn-prim">JOIN US</button>
+                <button class="btn-prim" :style="'color: ' + event.color + '; border-color: ' + event.color">JOIN US</button>
               </div>
             </div>
             <div :class="'column is-narrow expander' + (event.expanded ? ' is-active' : '')" :style="'color: ' + event.color" @click="event.expanded = !event.expanded">
@@ -106,7 +106,7 @@ export default {
       events: [
         { 
           date: "30 March - 1 April 2018", name: "YOUNG LEAN ENTREPRENEUR", color: "#eee93b",
-          desc: "Some kind of foocking description",
+          desc: "95 % ของ Startup Fail สาเหตุหลัก ๆ เกิดขึ้นเพราะไม่รู้จริงว่าลูกค้ามีปัญหาที่เขาต้องการแก้จริงไหม LEAN Startup จึงเป็นวิธีการที่ Startup ทั่วโลกนิยมใช้กันเพื่อเริ่มต้นธุรกิจของตนเอง ในงานนี้เพื่อน ๆ จะได้ประสบการณ์การ คิด และ ลงมือทำจริงเสมือนตัวเองเป็น Startup  พร้อมการประกบจาก Mentor ที่จะคอยให้คำแนะนำระหว่าง Workshop ",
           speakers: [
             { name: "ojnojn", pos: "test", avatar: "https://www.w3schools.com/howto/img_avatar.png"},
             { name: "ojnojn", pos: "test", avatar: "https://www.w3schools.com/howto/img_avatar.png"},
@@ -117,7 +117,7 @@ export default {
         },
         { 
           date: "6 April - 8 April 2018", name: "YOUNG DIGITAL MARKETEER", color: "#f8a28c", 
-          desc: "Some kind of foocking description",
+          desc: "ยอดไลค์ ยอดแชร์ ไม่ใช่หัวใจหลักของการทำการตลาดแบบดิจิตอล แล้วอะไรหละที่เป็นหัวใจสำคัญ และ เราจะทำได้อย่างไร? งานนี้รวมพี่ ๆ ในวงการ Digital มากมายกว่า 8 บริษัท ที่จะมาจัด workshop แบบไม่กัก ",
           speakers: [
             { name: "ojnojn", pos: "test", avatar: "https://www.w3schools.com/howto/img_avatar.png"},
             { name: "ojnojn", pos: "test", avatar: "https://www.w3schools.com/howto/img_avatar.png"},
@@ -128,7 +128,7 @@ export default {
         },
         { 
           date: "20 April - 22 April 2018", name: "YOUNG INNOVATION CREATOR", color: "#97d3de", 
-          desc: "Some kind of foocking description",
+          desc: "ยุคนี้เราปฏิเสธไม่ได้ว่าเทคโนโลยีมีบทบาทเป็นอย่างมากกับธุรกิจ เราเชิญชวนเยาวชนที่มีทักษะการทำด้าน Programming, Design, Project Management  งานนี้เราจะจำลองสถานการณ์ว่าหากคุณต้องทำ Website หรือ Application จะมีกระบวนการอะไรเกิดขึ้นบ้าง ตั้งแต่รับโจทย์มาจากลูกค้า, การทำงานเป็นทีม, Tool - วิธีการพูดคุยกับทีม และ ลูกค้า, การป้องกันการถูกโกง และ อื่นๆ",
           speakers: [
             { name: "ojnojn", pos: "test", avatar: "https://www.w3schools.com/howto/img_avatar.png"},
             { name: "ojnojn", pos: "test", avatar: "https://www.w3schools.com/howto/img_avatar.png"},
@@ -201,7 +201,11 @@ export default {
     color: white;
     background: transparent;
     filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.5));
-    transition: all .5s;
+    transition: all .3s;
+
+    &:hover {
+      transform: scale(1.05)
+    }
   }
 
   .is-gapless {
@@ -329,6 +333,7 @@ export default {
       font-family: "beon";
       font-size: 4.5em;
       text-shadow: 0 0 15px #E23EFF;
+      line-height: 1.2;
     }
 
     @include mobile {
@@ -336,7 +341,6 @@ export default {
       
       h1 {
         font-size: 2.75em;
-        line-height: 1.3;
       }
     }
   }
