@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <!-- Navbar -->
-    <div class="navbar">
-      <div :class="'icon' + (logoActive ? '' : ' is-shrink')">
+    <div :class="'navbar' + (logoActive ? '' : ' is-shrink')">
+      <div class="icon">
         <div class="triangle is-hidden-mobile"></div>
         <object type="image/svg+xml" data="/static/logoypp.svg"></object>
       </div>
@@ -25,7 +25,7 @@
             <p>งานที่จะทำให้เยาวชนได้ใช้ศักยภาพของตนเองอย่างเต็มที่ พบปะเพื่อน ๆ หลากมหาวิทยาลัย และ พี่ ๆ จากบริษัทต่าง ๆ ที่จะเข้ามาแบ่งปันความรู้แบบไม่อั้น</p>
             <br>
             <!-- Scrollspy -->
-            <scrollactive :offset="40" @itemchanged="onSectionChanged">
+            <scrollactive :offset="60" @itemchanged="onSectionChanged">
               <a href="#title" class="scrollactive-item" style="display: none;"></a>
               <a href="#event" class="scrollactive-item learnmore" @click="logoActive = false">&#8675;</a>
             </scrollactive><!-- End of Scrollspy -->
@@ -142,7 +142,7 @@ export default {
             { name: "ojnojn", pos: "test", avatar: "https://www.w3schools.com/howto/img_avatar.png"},
             { name: "ojnojn", pos: "test", avatar: "https://www.w3schools.com/howto/img_avatar.png"},
           ],
-          map: "!1m18!1m12!1m3!1d3875.2542381557278!2d100.56557031523678!3d13.76353599033984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e29f1a72743b53%3A0xb7d75ea04f6dea83!2z4LiV4Lil4Liy4LiU4Lir4Lil4Lix4LiB4LiX4Lij4Lix4Lie4Lii4LmM4LmB4Lir4LmI4LiH4Lib4Lij4Liw4LmA4LiX4Lio4LmE4LiX4LiiIC0gVGhlIFN0b2NrIEV4Y2hhbmdlIG9mIFRoYWlsYW5k!5e0!3m2!1sen!2sth!4v1518589636008",
+          map: "",
           expanded: false,
         },
         { 
@@ -153,7 +153,7 @@ export default {
             { name: "ojnojn", pos: "test", avatar: "https://www.w3schools.com/howto/img_avatar.png"},
             { name: "ojnojn", pos: "test", avatar: "https://www.w3schools.com/howto/img_avatar.png"},
           ],
-          map: "!1m18!1m12!1m3!1d3875.2542381557278!2d100.56557031523678!3d13.76353599033984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e29f1a72743b53%3A0xb7d75ea04f6dea83!2z4LiV4Lil4Liy4LiU4Lir4Lil4Lix4LiB4LiX4Lij4Lix4Lie4Lii4LmM4LmB4Lir4LmI4LiH4Lib4Lij4Liw4LmA4LiX4Lio4LmE4LiX4LiiIC0gVGhlIFN0b2NrIEV4Y2hhbmdlIG9mIFRoYWlsYW5k!5e0!3m2!1sen!2sth!4v1518589636008",
+          map: "",
           expanded: false,
         },
         { 
@@ -164,7 +164,7 @@ export default {
             { name: "ojnojn", pos: "test", avatar: "https://www.w3schools.com/howto/img_avatar.png"},
             { name: "ojnojn", pos: "test", avatar: "https://www.w3schools.com/howto/img_avatar.png"},
           ],
-          map: "!1m18!1m12!1m3!1d3875.2542381557278!2d100.56557031523678!3d13.76353599033984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e29f1a72743b53%3A0xb7d75ea04f6dea83!2z4LiV4Lil4Liy4LiU4Lir4Lil4Lix4LiB4LiX4Lij4Lix4Lie4Lii4LmM4LmB4Lir4LmI4LiH4Lib4Lij4Liw4LmA4LiX4Lio4LmE4LiX4LiiIC0gVGhlIFN0b2NrIEV4Y2hhbmdlIG9mIFRoYWlsYW5k!5e0!3m2!1sen!2sth!4v1518589636008",
+          map: "",
           expanded: false,
         },
       ],
@@ -264,6 +264,7 @@ export default {
     width: 100vw;
     position: fixed;
     text-align: right;
+    transition: all .5s;
 
     .icon {
       position: relative;
@@ -294,27 +295,6 @@ export default {
           left: 3vw;
         }
       }
-
-      &.is-shrink {
-        .triangle {
-          border-top-width: 15vw;
-          border-right-width: 18vw;
-          opacity: 0;
-        }
-        object {
-          @include desktop {
-            position: absolute;
-            top: 1.5vw;
-            left: 1.5vw;
-            width: auto;
-            height: 4vw;
-          }
-
-          @include mobile {
-            opacity: 0;
-          }
-        }
-      }
     }
 
     .menu {
@@ -337,6 +317,28 @@ export default {
           opacity: 0.5;
         }
        
+      }
+    }
+
+    &.is-shrink {
+      .triangle {
+        border-top-width: 15vw;
+        border-right-width: 18vw;
+        opacity: 0;
+      }
+
+      object {
+        @include desktop {
+          position: absolute;
+          top: 1.5vw;
+          left: 1.5vw;
+          width: auto;
+          height: 4vw;
+        }
+      }
+
+      @include mobile {
+        opacity: 0;
       }
     }
   }
@@ -388,6 +390,7 @@ export default {
       border: 0 dashed white;
       box-sizing: border-box;
       min-height: 20px;
+      padding: 0 10px;
 
       &.d-right {
         border-right-width: 1px;
@@ -407,7 +410,7 @@ export default {
     }
 
     .event {
-      padding: 20px 30px;
+      padding: 20px;
       text-align: left;
 
       .title {
@@ -469,7 +472,7 @@ export default {
     }
 
     .expander {
-      font-size: 1.8em;
+      font-size: 2.6em;
       padding: 5px;
       display: flex;
       justify-content: center;
