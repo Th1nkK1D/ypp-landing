@@ -41,10 +41,7 @@
       <div v-for="(event, e) in events" :key="e" :class="'columns is-gapless ' + (e%2 !== 0 ? 'r-reverse' : '') + ' dash ' + (e < events.length-1 ? 'd-bottom ' : '') + (e%2 === 0 ? 'd-left' : 'd-right')">
         <!-- Main content -->
         <div class="column">
-          <div class="columns is-gapless is-mobile">
-            <div v-if="e%2 !== 0" class="column is-narrow expander" :style="'color: ' + event.color">
-              <span>&lt;</span>
-            </div>
+          <div :class="'columns is-gapless is-mobile ' + (e%2 !== 0 ? 'r-reverse' : '')">
             <div class="column">
               <div class="event">
                 {{event.date}}
@@ -54,31 +51,34 @@
                 <button class="btn-prim">JOIN US</button>
               </div>
             </div>
-            <div v-if="e%2 === 0" class="column is-narrow expander" :style="'color: ' + event.color">
-              <span>&gt;</span>
+            <div :class="'column is-narrow expander' + (event.expanded ? ' is-active' : '')" :style="'color: ' + event.color" @click="event.expanded = !event.expanded">
+              <span class="gt" v-if="e%2 == 0">&gt;</span>
+              <span class="lt" v-else>&lt;</span>
             </div>
           </div>
         </div><!-- End of Main content -->
 
         <!-- Expansion -->
         <div class="column">
-          <div class="event">
-            <h3>Speakers</h3>
+          <transition name="fade">
+            <div class="event" v-show="event.expanded">
+              <h3>Speakers</h3>
 
-            <div class="columns is-gapless is-multiline is-mobile speakers">
-              <div class="speaker is-narrow" v-for="(speaker,s) in event.speakers" :key="s" onclick="">
-                <img :src="speaker.avatar" alt="">
-                <div class="label">
-                  <p class="name">{{speaker.name}}</p>
-                  <p class="pos">{{speaker.pos}}</p>
+              <div class="columns is-gapless is-multiline is-mobile speakers">
+                <div class="speaker is-narrow" v-for="(speaker,s) in event.speakers" :key="s" onclick="">
+                  <img :src="speaker.avatar" alt="">
+                  <div class="label">
+                    <p class="name">{{speaker.name}}</p>
+                    <p class="pos">{{speaker.pos}}</p>
+                  </div>
                 </div>
               </div>
+
+              <h3>Location</h3>
+
+              <iframe :src="'https://www.google.com/maps/embed?pb=' + event.map"></iframe>
             </div>
-
-            <h3>Location</h3>
-
-            <iframe :src="'https://www.google.com/maps/embed?pb=' + event.map"></iframe>
-          </div>
+          </transition>
         </div><!-- End of Expansion -->
 
       </div><!-- End of Event -->
@@ -103,7 +103,6 @@ export default {
   data() {
     return {
       logoActive: true,
-      expandedEvent: [],
       events: [
         { 
           date: "30 March - 1 April 2018", name: "YOUNG LEAN ENTREPRENEUR", color: "#eee93b",
@@ -114,6 +113,7 @@ export default {
             { name: "ojnojn", pos: "test", avatar: "https://www.w3schools.com/howto/img_avatar.png"},
           ],
           map: "!1m18!1m12!1m3!1d3875.2542381557278!2d100.56557031523678!3d13.76353599033984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e29f1a72743b53%3A0xb7d75ea04f6dea83!2z4LiV4Lil4Liy4LiU4Lir4Lil4Lix4LiB4LiX4Lij4Lix4Lie4Lii4LmM4LmB4Lir4LmI4LiH4Lib4Lij4Liw4LmA4LiX4Lio4LmE4LiX4LiiIC0gVGhlIFN0b2NrIEV4Y2hhbmdlIG9mIFRoYWlsYW5k!5e0!3m2!1sen!2sth!4v1518589636008",
+          expanded: false,
         },
         { 
           date: "6 April - 8 April 2018", name: "YOUNG DIGITAL MARKETEER", color: "#f8a28c", 
@@ -124,6 +124,7 @@ export default {
             { name: "ojnojn", pos: "test", avatar: "https://www.w3schools.com/howto/img_avatar.png"},
           ],
           map: "!1m18!1m12!1m3!1d3875.2542381557278!2d100.56557031523678!3d13.76353599033984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e29f1a72743b53%3A0xb7d75ea04f6dea83!2z4LiV4Lil4Liy4LiU4Lir4Lil4Lix4LiB4LiX4Lij4Lix4Lie4Lii4LmM4LmB4Lir4LmI4LiH4Lib4Lij4Liw4LmA4LiX4Lio4LmE4LiX4LiiIC0gVGhlIFN0b2NrIEV4Y2hhbmdlIG9mIFRoYWlsYW5k!5e0!3m2!1sen!2sth!4v1518589636008",
+          expanded: false,
         },
         { 
           date: "20 April - 22 April 2018", name: "YOUNG INNOVATION CREATOR", color: "#97d3de", 
@@ -134,6 +135,7 @@ export default {
             { name: "ojnojn", pos: "test", avatar: "https://www.w3schools.com/howto/img_avatar.png"},
           ],
           map: "!1m18!1m12!1m3!1d3875.2542381557278!2d100.56557031523678!3d13.76353599033984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e29f1a72743b53%3A0xb7d75ea04f6dea83!2z4LiV4Lil4Liy4LiU4Lir4Lil4Lix4LiB4LiX4Lij4Lix4Lie4Lii4LmM4LmB4Lir4LmI4LiH4Lib4Lij4Liw4LmA4LiX4Lio4LmE4LiX4LiiIC0gVGhlIFN0b2NrIEV4Y2hhbmdlIG9mIFRoYWlsYW5k!5e0!3m2!1sen!2sth!4v1518589636008",
+          expanded: false,
         },
         { 
           date: "June 2018", name: "YOUNG SOCIAL IMPACT MAKER", color: "#77c8b9", 
@@ -144,6 +146,7 @@ export default {
             { name: "ojnojn", pos: "test", avatar: "https://www.w3schools.com/howto/img_avatar.png"},
           ],
           map: "!1m18!1m12!1m3!1d3875.2542381557278!2d100.56557031523678!3d13.76353599033984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e29f1a72743b53%3A0xb7d75ea04f6dea83!2z4LiV4Lil4Liy4LiU4Lir4Lil4Lix4LiB4LiX4Lij4Lix4Lie4Lii4LmM4LmB4Lir4LmI4LiH4Lib4Lij4Liw4LmA4LiX4Lio4LmE4LiX4LiiIC0gVGhlIFN0b2NrIEV4Y2hhbmdlIG9mIFRoYWlsYW5k!5e0!3m2!1sen!2sth!4v1518589636008",
+          expanded: false,
         },
       ],
     }
@@ -434,12 +437,41 @@ export default {
       justify-content: center;
       opacity: 0.6;
 
-      span {
-        margin: auto;
-      }
-
       &:hover {
         opacity: 1;
+      }
+
+      span {
+        margin: auto;
+        transition: all 0.5s;
+      }
+
+      @include mobile {
+        .gt {
+          transform: rotate(90deg);
+        }
+
+        .lt {
+          transform: rotate(-90deg);
+        }
+      }
+
+      &.is-active {
+        .gt {
+          transform: rotate(180deg);
+
+          @include mobile {
+            transform: rotate(-90deg);
+          }
+        }
+
+        .lt {
+          transform: rotate(-180deg);
+
+          @include mobile {
+            transform: rotate(90deg);
+          }
+        }
       }
     }
 
@@ -458,6 +490,14 @@ export default {
         height: 200px;
       }
     }
+  }
+
+  .fade-enter-active, .fade-leave-active {
+    transition: all 0.5s;
+  }
+  .fade-enter, .fade-leave-to {
+    opacity: 0;
+    transform: translate(0, -20px);
   }
 </style>
 
