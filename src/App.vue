@@ -6,6 +6,12 @@
         <div class="triangle is-hidden-mobile"></div>
         <object type="image/svg+xml" data="/static/logoypp.svg"></object>
       </div>
+
+      <div class="menu">
+        <a href="https://www.facebook.com/youngpassionateprogram/" target="_blank">
+          <img src="/static/facebook.svg"/>
+        </a>
+      </div>
     </div><!-- End of Navbar -->
 
     <!-- Heading -->
@@ -23,7 +29,6 @@
               <a href="#title" class="scrollactive-item" style="display: none;"></a>
               <a href="#event" class="scrollactive-item learnmore" @click="logoActive = false">&#8675;</a>
             </scrollactive><!-- End of Scrollspy -->
-            
           </div>
         </div>
       </div>
@@ -50,7 +55,7 @@
                 <p class="title" :style="'color: ' + event.color">{{event.name}}</p>
                 <p>{{event.desc}}</p>
                 <br>
-                <button class="btn-prim" :style="'color: ' + event.color + '; border-color: ' + event.color">JOIN US</button>
+                <button class="btn-prim" :style="'color: ' + event.color + '; border-color: ' + event.color">ลงชื่อ</button>
               </div>
             </div>
             <div :class="'column is-narrow expander' + (event.expanded ? ' is-active' : '')" :style="'color: ' + event.color" @click="event.expanded = !event.expanded">
@@ -92,8 +97,20 @@
     </div><!-- End of Events timeline -->
 
     <!-- Sponsors -->
-    <div class="section sponsors" id="supporters">
+    <div class="section sponsors" style="text-align: center;">
       <h2 class="hgreen">Sponsors</h2>
+      <p>Sponsors logo here...</p>
+    </div><!-- End of Sponsors -->
+
+    <!-- Sponsors -->
+    <div class="section sponsors" style="text-align: center;">
+      <h2 class="hblue">About Us</h2>
+      <p>พวกเรา คือ กลุ่มนักศึกษาที่รวมตัวกันจาก 10 มหาวิทยาลัย กว่า 20 ชีวิต เพื่อ Volunteer ในการจัดงาน 3 งานนี้ขึ้นมา</p>
+      <br>
+
+      <a href="https://www.facebook.com/youngpassionateprogram/" target="_blank">
+        <button class="btn-prim">ติดตามพวกเราบน Facebook</button>
+      </a>
     </div><!-- End of Sponsors -->
 
   </div>
@@ -197,7 +214,8 @@ export default {
     font-size: 0.8em;
     font-weight: bold;
     height: 40px;
-    width: 140px;
+    min-width: 140px;
+    padding: 0 20px;
     border-radius: 18px;
     border: 1px solid white;
     color: white;
@@ -215,7 +233,7 @@ export default {
   }
 
   .section {
-    padding: 20px 10vw;
+    padding: 40px 10vw;
 
     @include mobile {
       padding: 20px 5vw;
@@ -303,23 +321,20 @@ export default {
       padding: 25px;
 
       a {
-        padding: 5px 15px 5px 12px;
-        margin: 10px 0;
         border: 0 solid white;
         text-decoration: none;
         color: white;
-        transition: all .2s;
+        opacity: 0.2;
+        transition: all .5s;
 
-        &.r-line {
-           border-right-width: 1px;
+        img {
+          width: 30px;
+          height: auto;
+          fill: white;
         }
 
         &:hover {
-          color: rgba(255,255,255,0.7);
-        }
-
-        &.is-active {
-          font-weight: bold;
+          opacity: 0.5;
         }
        
       }
@@ -342,7 +357,8 @@ export default {
       .learnmore {
         font-size: 3em;
         color: white;
-        opacity: 0.6;
+        opacity: 0.5;
+        transition: all 0.5s;
 
         &:hover {
           opacity: 1;
