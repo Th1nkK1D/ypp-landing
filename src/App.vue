@@ -22,7 +22,7 @@
           <div class="section">
             <h1 id="title">Young Passionate Program</h1>
             <br>
-            <p>งานที่จะทำให้เยาวชนได้ใช้ศักยภาพของตนเองอย่างเต็มที่ พบปะเพื่อน ๆ หลากมหาวิทยาลัย และ พี่ ๆ จากบริษัทต่าง ๆ ที่จะเข้ามาแบ่งปันความรู้แบบไม่อั้น</p>
+            <p>โปรแกรมเร่งด่วนสำหรับนิสิตนักศึกษาไฟแรงที่อยากเปลี่ยนให้แรงบันดาลใจไม่ใช่แค่ความฝัน แต่เกิดขึ้นจริงด้วยสองมือของเรา ผ่านการเรียนรู้ครบทุกกระบวนการ ตั้งแต่ปลุกปั้นความคิด ระดมสมอง และลงมือทำ พร้อมกับ Mentor ผู้คร่ำหวอดในวงการ Business, Marketer, Designer, และDeveloper จากบริษัทต่างๆ ที่จะมาแบ่งปันเทคนิคอย่างไม่มีกั๊ก</p>
             <br>
             <!-- Scrollspy -->
             <scrollactive :offset="60" @itemchanged="onSectionChanged">
@@ -90,9 +90,9 @@
 
       </div><!-- End of Event -->
 
-      <div class="columns is-gapless is-mobile">
+      <div :class="'columns is-gapless is-mobile '  + (this.events%2 !== 0 ? 'r-reverse' : '')">
         <div class="column is-6"></div>
-        <div class="column is-6 dash d-left d-top"></div>
+        <div :class="'column is-6 dash d-top ' + (this.events%2 !== 0 ? 'd-right' : 'd-left')"></div>
       </div>
     </div><!-- End of Events timeline -->
 
@@ -125,7 +125,7 @@ export default {
       events: [
         { 
           date: "30 March - 1 April 2018", name: "YOUNG LEAN ENTREPRENEUR", color: "#eee93b",
-          desc: "95 % ของ Startup Fail สาเหตุหลัก ๆ เกิดขึ้นเพราะไม่รู้จริงว่าลูกค้ามีปัญหาที่เขาต้องการแก้จริงไหม LEAN Startup จึงเป็นวิธีการที่ Startup ทั่วโลกนิยมใช้กันเพื่อเริ่มต้นธุรกิจของตนเอง ในงานนี้เพื่อน ๆ จะได้ประสบการณ์การ คิด และ ลงมือทำจริงเสมือนตัวเองเป็น Startup  พร้อมการประกบจาก Mentor ที่จะคอยให้คำแนะนำระหว่าง Workshop ",
+          desc: "ธุรกิจไม่ใช่เรื่องง่าย 95% ของ Startup ล้มเหลว เพราะสาเหตุหลักเกิดจากผู้ประกอบการที่ไม่รู้ความต้องการของลูกค้า Lean Startup จึงเป็นวิธีการที่เหล่า Startup นิยมใช้กันทั่วโลกเพื่อเริ่มต้นธุรกิจของตนเองด้วยทรัพยากรจำกัดแต่ได้ผลตอบแทนเกินคาด ความสำเร็จจึงเป็นเรื่องที่เราเองก็เอื้อมถึงมันได้ในงาน Young Lean Entrepreneur พื้นที่แสวงหาประสบการณ์ที่ไม่ใช่แค่การเวิร์กชอปแล้วจบไป",
           speakers: [
             { name: "ojnojn", pos: "test", avatar: "https://www.w3schools.com/howto/img_avatar.png"},
             { name: "ojnojn", pos: "test", avatar: "https://www.w3schools.com/howto/img_avatar.png"},
@@ -136,7 +136,7 @@ export default {
         },
         { 
           date: "6 April - 8 April 2018", name: "YOUNG DIGITAL MARKETEER", color: "#f8a28c", 
-          desc: "ยอดไลค์ ยอดแชร์ ไม่ใช่หัวใจหลักของการทำการตลาดแบบดิจิตอล แล้วอะไรหละที่เป็นหัวใจสำคัญ และ เราจะทำได้อย่างไร? งานนี้รวมพี่ ๆ ในวงการ Digital มากมายกว่า 8 บริษัท ที่จะมาจัด workshop แบบไม่กัก ",
+          desc: "หากยอดไลก์และยอดแชร์ ไม่ใช่หัวใจหลักของการทำการตลาดบนโลกดิจิตอล แล้วอะไรที่เป็นหัวใจสำคัญของการสร้างแบรนด์เหล่านี้ งาน Young Digital Marketer จึงเหมาะสำหรับผู้ที่อยากสร้างแบรนด์ของตนให้เป็นที่รู้จัก พร้อมกับจับลูกค้าให้อยู่หมัดด้วยพลังของการสื่อสาร",
           speakers: [
             { name: "ojnojn", pos: "test", avatar: "https://www.w3schools.com/howto/img_avatar.png"},
             { name: "ojnojn", pos: "test", avatar: "https://www.w3schools.com/howto/img_avatar.png"},
@@ -147,7 +147,7 @@ export default {
         },
         { 
           date: "20 April - 22 April 2018", name: "YOUNG INNOVATION CREATOR", color: "#97d3de", 
-          desc: "ยุคนี้เราปฏิเสธไม่ได้ว่าเทคโนโลยีมีบทบาทเป็นอย่างมากกับธุรกิจ เราเชิญชวนเยาวชนที่มีทักษะการทำด้าน Programming, Design, Project Management  งานนี้เราจะจำลองสถานการณ์ว่าหากคุณต้องทำ Website หรือ Application จะมีกระบวนการอะไรเกิดขึ้นบ้าง ตั้งแต่รับโจทย์มาจากลูกค้า, การทำงานเป็นทีม, Tool - วิธีการพูดคุยกับทีม และ ลูกค้า, การป้องกันการถูกโกง และ อื่นๆ",
+          desc: "ธุรกิจส่วนใหญ่ต้องเผชิญกับความท้ายทายใหม่ๆ ด้วยนวัตกรรมและเทคโนโลยีที่มีมาอยู่เสมอ จึงปฏิเสธไม่ได้ว่าสิ่งเหล่านั้นมีบทบาทสำคัญต่อธุรกิจเป็นอย่างมาก เพื่อไม่ให้ตกยุคด้วยการวิวัฒน์แบบก้าวกระโดดของเทคโนโลยีสุดเจ๋ง เราจึงอยากชวนทุกคนที่มีใจทางด้าน Programming, Design, หรือProject Management มาร่วมกันจำลองสถานการณ์แบบนักปฏิบัติจริงเพื่อคิดค้น Application หรือ Website ที่ตอบโจทย์ User และมาร่วมกันสร้างภูมิคุ้มกันจาก Guest speaker",
           speakers: [
             { name: "ojnojn", pos: "test", avatar: "https://www.w3schools.com/howto/img_avatar.png"},
             { name: "ojnojn", pos: "test", avatar: "https://www.w3schools.com/howto/img_avatar.png"},
@@ -156,17 +156,17 @@ export default {
           map: "",
           expanded: false,
         },
-        { 
-          date: "June 2018", name: "YOUNG SOCIAL IMPACT MAKER", color: "#77c8b9", 
-          desc: "Some kind of foocking description",
-          speakers: [
-            { name: "ojnojn", pos: "test", avatar: "https://www.w3schools.com/howto/img_avatar.png"},
-            { name: "ojnojn", pos: "test", avatar: "https://www.w3schools.com/howto/img_avatar.png"},
-            { name: "ojnojn", pos: "test", avatar: "https://www.w3schools.com/howto/img_avatar.png"},
-          ],
-          map: "",
-          expanded: false,
-        },
+        // { 
+        //   date: "June 2018", name: "YOUNG SOCIAL IMPACT MAKER", color: "#77c8b9", 
+        //   desc: "Some kind of foocking description",
+        //   speakers: [
+        //     { name: "ojnojn", pos: "test", avatar: "https://www.w3schools.com/howto/img_avatar.png"},
+        //     { name: "ojnojn", pos: "test", avatar: "https://www.w3schools.com/howto/img_avatar.png"},
+        //     { name: "ojnojn", pos: "test", avatar: "https://www.w3schools.com/howto/img_avatar.png"},
+        //   ],
+        //   map: "",
+        //   expanded: false,
+        // },
       ],
     }
   },
