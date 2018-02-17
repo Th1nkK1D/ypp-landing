@@ -430,7 +430,7 @@ export default {
       .speakers {
         .speaker {
           text-align: center;
-          position: relative;
+          margin-bottom: 10px;
 
           img {
             width: 100px;
@@ -441,19 +441,17 @@ export default {
           }
 
           .label {
-            position: absolute;
-            bottom: 10px;
             width: 100%;
-            opacity: 0;
             line-height: 1.2;
             transition: all .5s;
 
             .name {
+              font-size: 0.9em;
               font-weight: bold;
             }
             
             .pos {
-              font-size: 0.8em;
+              font-size: 0.7em;
             }
           }
 
@@ -461,10 +459,6 @@ export default {
             img {
               filter: grayscale(0);
               opacity: 0.5;
-            }
-
-            .label {
-              opacity: 1;
             }
           }
         }
