@@ -59,7 +59,7 @@
                 <button v-else class="btn-prim disabled">Coming Soon</button>
               </div>
             </div>
-            <div :class="'column is-narrow expander' + (event.expanded ? ' is-active' : '')" :style="'color: ' + event.color"><!-- @click="event.expanded = !event.expanded" -->
+            <div :class="'column is-narrow expander' + (event.expanded ? ' is-active' : '')" :style="'color: ' + event.color" @click="event.expanded = !event.expanded">
               <span class="gt" v-if="e%2 == 0">&gt;</span>
               <span class="lt" v-else>&lt;</span>
             </div>
@@ -70,21 +70,24 @@
         <div class="column">
           <transition name="fade">
             <div class="event" v-show="event.expanded">
-              <h3>Speakers</h3>
+              <div v-if="event.speakers.length > 0">
+                <h3>Speakers</h3>
 
-              <div class="columns is-gapless is-multiline is-mobile speakers">
-                <div class="speaker is-narrow" v-for="(speaker,s) in event.speakers" :key="s" onclick="">
-                  <img :src="speaker.avatar" alt="">
-                  <div class="label">
-                    <p class="name">{{speaker.name}}</p>
-                    <p class="pos">{{speaker.pos}}</p>
+                <div class="columns is-gapless is-multiline is-mobile speakers">
+                  <div class="speaker is-narrow" v-for="(speaker,s) in event.speakers" :key="s" onclick="">
+                    <img :src="'/static/speakers/'+(e+1)+'/'+speaker.avatar" alt="">
+                    <div class="label">
+                      <p class="name">{{speaker.name}}</p>
+                      <p class="pos">{{speaker.pos}}</p>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <h3>Location</h3>
-
-              <iframe :src="'https://www.google.com/maps/embed?pb=' + event.map"></iframe>
+              <div v-if="event.map.length > 0">
+                <h3>Location</h3>
+                <iframe :src="'https://www.google.com/maps/embed?pb=' + event.map"></iframe>
+              </div>
             </div>
           </transition>
         </div><!-- End of Expansion -->
@@ -129,11 +132,11 @@ export default {
           date: "30 March - 1 April 2018", name: "YOUNG LEAN ENTREPRENEUR", color: "#eee93b",
           desc: "95% ของ Startup ล้มเหลว เพราะผู้ประกอบการไม่รู้ความต้องการของลูกค้า Lean Startup จึงเป็นวิธีการที่นิยมใช้กันทั่วโลกเพื่อเริ่มต้นธุรกิจด้วยทรัพยากรจำกัด แต่ได้ผลลัพธ์เกินคาด คว้าความสำเร็จได้ในงาน Young Lean Entrepreneur พื้นที่แสวงหาประสบการณ์ที่ไม่ใช่แค่การเวิร์กชอปแล้วจบไป",
           speakers: [
-            { name: "ojnojn", pos: "test", avatar: "https://www.w3schools.com/howto/img_avatar.png"},
-            { name: "ojnojn", pos: "test", avatar: "https://www.w3schools.com/howto/img_avatar.png"},
-            { name: "ojnojn", pos: "test", avatar: "https://www.w3schools.com/howto/img_avatar.png"},
+            { name: "Chavayot", pos: "Lean Startup Thailand", avatar: "DSC00842.JPG"},
+            { name: "Niti", pos: "Lean Startup Thailand", avatar: "DSC00860.JPG"},
+            { name: "Krissada", pos: "Lean Startup Thailand", avatar: "DSC00850.JPG"},
           ],
-          map: "!1m18!1m12!1m3!1d3875.2542381557278!2d100.56557031523678!3d13.76353599033984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e29f1a72743b53%3A0xb7d75ea04f6dea83!2z4LiV4Lil4Liy4LiU4Lir4Lil4Lix4LiB4LiX4Lij4Lix4Lie4Lii4LmM4LmB4Lir4LmI4LiH4Lib4Lij4Liw4LmA4LiX4Lio4LmE4LiX4LiiIC0gVGhlIFN0b2NrIEV4Y2hhbmdlIG9mIFRoYWlsYW5k!5e0!3m2!1sen!2sth!4v1518589636008",
+          map: "",
           link: "https://www.eventpop.me/e/2994-young-lean-entrepreneur",
           expanded: false,
         },
@@ -141,23 +144,24 @@ export default {
           date: "6 April - 8 April 2018", name: "YOUNG DIGITAL MARKETEER", color: "#f8a28c", 
           desc: "หากยอดไลก์และยอดแชร์ ไม่ใช่หัวใจหลักของการทำการตลาดบนโลกดิจิตอล แล้วอะไรที่เป็นหัวใจสำคัญของการสร้างแบรนด์เหล่านี้ งาน Young Digital Marketer จึงเหมาะสำหรับผู้ที่อยากสร้างแบรนด์ของตนให้เป็นที่รู้จัก พร้อมกับจับลูกค้าให้อยู่หมัดด้วยพลังของการสื่อสาร",
           speakers: [
-            { name: "ojnojn", pos: "test", avatar: "https://www.w3schools.com/howto/img_avatar.png"},
-            { name: "ojnojn", pos: "test", avatar: "https://www.w3schools.com/howto/img_avatar.png"},
-            { name: "ojnojn", pos: "test", avatar: "https://www.w3schools.com/howto/img_avatar.png"},
+            { name: "Pornthep", pos: "ขอบสนาม", avatar: "PornthepAchatsachat.jpg"},
+            { name: "Niti", pos: "Techsource", avatar: "DSC00860.JPG"},
+            { name: "Sitthikit", pos: "Mobile Photographer", avatar: "13908940_10202060088459630_7999859933542120518_o.jpg"},
+            { name: "Panuwat", pos: "The Nerd Creator", avatar: "15622398_1385228428156931_1323153179127751927_n.jpg"},
+            { name: "Sitthichok", pos: "Sista Cafe", avatar: "SitthichokPanyachaisana.jpg"},
+            { name: "Supacheep", pos: "Growth Hack TH", avatar: "25593980_10211425178012660_8315281197925554200_n.jpg"},
+            { name: "Chaiyaphong", pos: "3DS Interactive", avatar: "1512039_635170953243298_3405364241452411355_o.jpg"},
+            { name: "Nakamon", pos: "Marketing Consult", avatar: "26060482_10209092906074591_1397648681681417503_o.jpg"},
           ],
-          map: "",
+          map: "!1m18!1m12!1m3!1d3875.2542381557278!2d100.56557031523678!3d13.76353599033984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e29f1a72743b53%3A0xb7d75ea04f6dea83!2z4LiV4Lil4Liy4LiU4Lir4Lil4Lix4LiB4LiX4Lij4Lix4Lie4Lii4LmM4LmB4Lir4LmI4LiH4Lib4Lij4Liw4LmA4LiX4Lio4LmE4LiX4LiiIC0gVGhlIFN0b2NrIEV4Y2hhbmdlIG9mIFRoYWlsYW5k!5e0!3m2!1sen!2sth!4v1518589636008",
           link: "",
           expanded: false,
         },
         { 
           date: "20 April - 22 April 2018", name: "YOUNG INNOVATION CREATOR", color: "#97d3de", 
           desc: "ปฏิเสธไม่ได้ว่านวัตกรรมสร้างสรรค์ธุรกิจ เทคโนโลยีจึงมีบทบาทสำคัญที่ช่วยสรรสร้างประสบการณ์ใหม่ๆ ให้กับผู้ประกอบการและผู้ใช้ เราจึงอยากชวนทุกคนที่มีใจทางด้าน Programming, Design, หรือProject Management มาร่วมกันจำลองสถานการณ์จริงเพื่อคิดค้น Application หรือ Website เพื่อตอบโจทย์ลูกค้า",
-          speakers: [
-            { name: "ojnojn", pos: "test", avatar: "https://www.w3schools.com/howto/img_avatar.png"},
-            { name: "ojnojn", pos: "test", avatar: "https://www.w3schools.com/howto/img_avatar.png"},
-            { name: "ojnojn", pos: "test", avatar: "https://www.w3schools.com/howto/img_avatar.png"},
-          ],
-          map: "",
+          speakers: [],
+          map: "!1m18!1m12!1m3!1d3875.888575614033!2d100.58543395078647!3d13.725195201559128!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e29fb195d786c9%3A0xd33e81e42904a76b!2sHUBBA+Thailand!5e0!3m2!1sen!2sth!4v1519132809342",
           link: "",
           expanded: false,
         },
@@ -441,15 +445,18 @@ export default {
       }
 
       .speakers {
+        padding-bottom: 20px;
+
         .speaker {
           text-align: center;
-          margin-bottom: 10px;
+          margin: 15px;
 
           img {
             width: 100px;
             height: 100px;
             object-fit: cover;
-            filter: grayscale(1);
+            filter: grayscale(0.7);
+            border-radius: 50%;
             transition: all .5s;
           }
 
@@ -471,7 +478,6 @@ export default {
           &:hover {
             img {
               filter: grayscale(0);
-              opacity: 0.5;
             }
           }
         }
@@ -528,7 +534,7 @@ export default {
       height: 250px;
       border: 0;
       transition: all 0.5s;
-      filter: grayscale(1);
+      filter: grayscale(0.7);
 
       &:hover {
         filter: grayscale(0);
