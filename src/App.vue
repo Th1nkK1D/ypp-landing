@@ -22,7 +22,7 @@
           <div class="section">
             <h1 id="title">Young Passionate Program</h1>
             <br>
-            <p>โปรแกรมเร่งด่วนสำหรับนิสิตนักศึกษาไฟแรงที่อยากเปลี่ยนให้แรงบันดาลใจไม่ใช่แค่ความฝัน แต่เกิดขึ้นจริงด้วยสองมือของเรา ผ่านการเรียนรู้ครบทุกกระบวนการ ตั้งแต่ปลุกปั้นความคิด ระดมสมอง และลงมือทำ พร้อมกับ Mentor ผู้คร่ำหวอดในวงการ Business, Marketer, Designer, และDeveloper จากบริษัทต่างๆ ที่จะมาแบ่งปันเทคนิคอย่างไม่มีกั๊ก</p>
+            <p>โปรแกรมสำหรับเยาวชนและผู้ที่สนใจ โดยมีอายุตั้งแต่ 18-25 ปี เพื่อเรียนรู้ทักษะBusiness, Marketing, Design, และDevelopment ฉบับเร่งด่วนแต่อัดแน่นด้วยสาระ ผ่านผู้เชี่ยวชาญในวงการต่างๆ ที่จะมาแบ่งปันเทคนิคอย่างไม่มีกั๊ก</p>
             <br>
             <!-- Scrollspy -->
             <scrollactive :offset="60" @itemchanged="onSectionChanged">
@@ -55,10 +55,11 @@
                 <p class="title" :style="'color: ' + event.color">{{event.name}}</p>
                 <p>{{event.desc}}</p>
                 <br>
-                <button class="btn-prim" :style="'color: ' + event.color + '; border-color: ' + event.color">ลงชื่อ</button>
+                <a v-if="event.link.length > 0" :href="event.link" target="_blank"><button class="btn-prim" :style="'color: ' + event.color + '; border-color: ' + event.color">ลงทะเบียน</button></a>
+                <button v-else class="btn-prim disabled">Coming Soon</button>
               </div>
             </div>
-            <div :class="'column is-narrow expander' + (event.expanded ? ' is-active' : '')" :style="'color: ' + event.color" @click="event.expanded = !event.expanded">
+            <div :class="'column is-narrow expander' + (event.expanded ? ' is-active' : '')" :style="'color: ' + event.color"><!-- @click="event.expanded = !event.expanded" -->
               <span class="gt" v-if="e%2 == 0">&gt;</span>
               <span class="lt" v-else>&lt;</span>
             </div>
@@ -97,10 +98,11 @@
     </div><!-- End of Events timeline -->
 
     <!-- Sponsors -->
-    <div class="section sponsors" style="text-align: center;">
+    <!-- <div class="section sponsors" style="text-align: center;">
       <h2 class="hgreen">Sponsors</h2>
       <p>Sponsors logo here...</p>
-    </div><!-- End of Sponsors -->
+    </div> -->
+    <!-- End of Sponsors -->
 
     <!-- Sponsors -->
     <div class="section sponsors" style="text-align: center;">
@@ -125,13 +127,14 @@ export default {
       events: [
         { 
           date: "30 March - 1 April 2018", name: "YOUNG LEAN ENTREPRENEUR", color: "#eee93b",
-          desc: "ธุรกิจไม่ใช่เรื่องง่าย 95% ของ Startup ล้มเหลว เพราะสาเหตุหลักเกิดจากผู้ประกอบการที่ไม่รู้ความต้องการของลูกค้า Lean Startup จึงเป็นวิธีการที่เหล่า Startup นิยมใช้กันทั่วโลกเพื่อเริ่มต้นธุรกิจของตนเองด้วยทรัพยากรจำกัดแต่ได้ผลตอบแทนเกินคาด ความสำเร็จจึงเป็นเรื่องที่เราเองก็เอื้อมถึงมันได้ในงาน Young Lean Entrepreneur พื้นที่แสวงหาประสบการณ์ที่ไม่ใช่แค่การเวิร์กชอปแล้วจบไป",
+          desc: "95% ของ Startup ล้มเหลว เพราะผู้ประกอบการไม่รู้ความต้องการของลูกค้า Lean Startup จึงเป็นวิธีการที่นิยมใช้กันทั่วโลกเพื่อเริ่มต้นธุรกิจด้วยทรัพยากรจำกัด แต่ได้ผลลัพธ์เกินคาด คว้าความสำเร็จได้ในงาน Young Lean Entrepreneur พื้นที่แสวงหาประสบการณ์ที่ไม่ใช่แค่การเวิร์กชอปแล้วจบไป",
           speakers: [
             { name: "ojnojn", pos: "test", avatar: "https://www.w3schools.com/howto/img_avatar.png"},
             { name: "ojnojn", pos: "test", avatar: "https://www.w3schools.com/howto/img_avatar.png"},
             { name: "ojnojn", pos: "test", avatar: "https://www.w3schools.com/howto/img_avatar.png"},
           ],
           map: "!1m18!1m12!1m3!1d3875.2542381557278!2d100.56557031523678!3d13.76353599033984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e29f1a72743b53%3A0xb7d75ea04f6dea83!2z4LiV4Lil4Liy4LiU4Lir4Lil4Lix4LiB4LiX4Lij4Lix4Lie4Lii4LmM4LmB4Lir4LmI4LiH4Lib4Lij4Liw4LmA4LiX4Lio4LmE4LiX4LiiIC0gVGhlIFN0b2NrIEV4Y2hhbmdlIG9mIFRoYWlsYW5k!5e0!3m2!1sen!2sth!4v1518589636008",
+          link: "https://www.eventpop.me/e/2994-young-lean-entrepreneur",
           expanded: false,
         },
         { 
@@ -143,17 +146,19 @@ export default {
             { name: "ojnojn", pos: "test", avatar: "https://www.w3schools.com/howto/img_avatar.png"},
           ],
           map: "",
+          link: "",
           expanded: false,
         },
         { 
           date: "20 April - 22 April 2018", name: "YOUNG INNOVATION CREATOR", color: "#97d3de", 
-          desc: "ธุรกิจส่วนใหญ่ต้องเผชิญกับความท้ายทายใหม่ๆ ด้วยนวัตกรรมและเทคโนโลยีที่มีมาอยู่เสมอ จึงปฏิเสธไม่ได้ว่าสิ่งเหล่านั้นมีบทบาทสำคัญต่อธุรกิจเป็นอย่างมาก เพื่อไม่ให้ตกยุคด้วยการวิวัฒน์แบบก้าวกระโดดของเทคโนโลยีสุดเจ๋ง เราจึงอยากชวนทุกคนที่มีใจทางด้าน Programming, Design, หรือProject Management มาร่วมกันจำลองสถานการณ์แบบนักปฏิบัติจริงเพื่อคิดค้น Application หรือ Website ที่ตอบโจทย์ User และมาร่วมกันสร้างภูมิคุ้มกันจาก Guest speaker",
+          desc: "ปฏิเสธไม่ได้ว่านวัตกรรมสร้างสรรค์ธุรกิจ เทคโนโลยีจึงมีบทบาทสำคัญที่ช่วยสรรสร้างประสบการณ์ใหม่ๆ ให้กับผู้ประกอบการและผู้ใช้ เราจึงอยากชวนทุกคนที่มีใจทางด้าน Programming, Design, หรือProject Management มาร่วมกันจำลองสถานการณ์จริงเพื่อคิดค้น Application หรือ Website เพื่อตอบโจทย์ลูกค้า",
           speakers: [
             { name: "ojnojn", pos: "test", avatar: "https://www.w3schools.com/howto/img_avatar.png"},
             { name: "ojnojn", pos: "test", avatar: "https://www.w3schools.com/howto/img_avatar.png"},
             { name: "ojnojn", pos: "test", avatar: "https://www.w3schools.com/howto/img_avatar.png"},
           ],
           map: "",
+          link: "",
           expanded: false,
         },
         // { 
@@ -225,6 +230,14 @@ export default {
 
     &:hover {
       transform: scale(1.05)
+    }
+
+    &.disabled {
+      opacity: 0.5;
+
+      &:hover {
+        transform: scale(1)
+      }
     }
   }
 
