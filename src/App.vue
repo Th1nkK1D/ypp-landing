@@ -22,7 +22,7 @@
           <div class="section">
             <h1 id="title">Young Passionate Program</h1>
             <br>
-            <p>โปรแกรมสำหรับเยาวชนและผู้ที่สนใจ โดยมีอายุตั้งแต่ 18-25 ปี เพื่อเรียนรู้ทักษะBusiness, Marketing, Design, และDevelopment ฉบับเร่งด่วนแต่อัดแน่นด้วยสาระ ผ่านผู้เชี่ยวชาญในวงการต่างๆ ที่จะมาแบ่งปันเทคนิคอย่างไม่มีกั๊ก</p>
+            <p>โปรแกรมสำหรับเยาวชนและผู้ที่สนใจ โดยมีอายุตั้งแต่ 18-25 ปี เพื่อเรียนรู้ทักษะ Business, Marketing, Design, และ Development ฉบับเร่งด่วนแต่อัดแน่นด้วยสาระ ผ่านผู้เชี่ยวชาญในวงการต่างๆ ที่จะมาแบ่งปันเทคนิคอย่างไม่มีกั๊ก</p>
             <br>
             <!-- Scrollspy -->
             <scrollactive :offset="60" @itemchanged="onSectionChanged">
@@ -55,8 +55,8 @@
                 <p class="title" :style="'color: ' + event.color">{{event.name}}</p>
                 <p>{{event.desc}}</p>
                 <br>
-                <a v-if="event.link.length > 0" :href="event.link" target="_blank"><button class="btn-prim" :style="'color: ' + event.color + '; border-color: ' + event.color">ลงทะเบียน</button></a>
-                <button v-else class="btn-prim disabled">Coming Soon</button>
+                <a v-if="event.link.length > 0" :href="event.link" target="_blank"><button class="btn-prim" :style="'background-color: ' + event.color">ลงทะเบียน</button></a>
+                <button v-else class="btn-prim disabled" :style="'color: ' + event.color +'; border-color: ' + event.color">Coming Soon</button>
               </div>
             </div>
             <div :class="'column is-narrow expander' + (event.expanded ? ' is-active' : '')" :style="'color: ' + event.color" @click="event.expanded = !event.expanded">
@@ -142,16 +142,16 @@ export default {
         },
         { 
           date: "6 April - 8 April 2018", name: "YOUNG DIGITAL MARKETEER", color: "#f8a28c", 
-          desc: "หากยอดไลก์และยอดแชร์ ไม่ใช่หัวใจหลักของการทำการตลาดบนโลกดิจิตอล แล้วอะไรที่เป็นหัวใจสำคัญของการสร้างแบรนด์เหล่านี้ งาน Young Digital Marketer จึงเหมาะสำหรับผู้ที่อยากสร้างแบรนด์ของตนให้เป็นที่รู้จัก พร้อมกับจับลูกค้าให้อยู่หมัดด้วยพลังของการสื่อสาร",
+          desc: "หากยอดไลค์และยอดแชร์ ไม่ใช่หัวใจหลักของการทำการตลาดบนโลกดิจิตอล แล้วอะไรที่เป็นหัวใจสำคัญของการสร้างแบรนด์เหล่านี้ งาน Young Digital Marketer จึงเหมาะสำหรับผู้ที่อยากสร้างแบรนด์ของตนให้เป็นที่รู้จัก พร้อมกับจับลูกค้าให้อยู่หมัดด้วยพลังของการสื่อสาร",
           speakers: [
             { name: "Pornthep", pos: "ขอบสนาม", avatar: "PornthepAchatsachat.jpg"},
             { name: "Niti", pos: "Techsource", avatar: "DSC00860.JPG"},
-            { name: "Sitthikit", pos: "Mobile Photographer", avatar: "13908940_10202060088459630_7999859933542120518_o.jpg"},
             { name: "Panuwat", pos: "The Nerd Creator", avatar: "15622398_1385228428156931_1323153179127751927_n.jpg"},
             { name: "Sitthichok", pos: "Sista Cafe", avatar: "SitthichokPanyachaisana.jpg"},
             { name: "Supacheep", pos: "Growth Hack TH", avatar: "25593980_10211425178012660_8315281197925554200_n.jpg"},
             { name: "Chaiyaphong", pos: "3DS Interactive", avatar: "1512039_635170953243298_3405364241452411355_o.jpg"},
             { name: "Nakamon", pos: "Marketing Consult", avatar: "26060482_10209092906074591_1397648681681417503_o.jpg"},
+            { name: "Sitthikit", pos: "Mobile Photographer", avatar: "13908940_10202060088459630_7999859933542120518_o.jpg"},
           ],
           map: "!1m18!1m12!1m3!1d3875.2542381557278!2d100.56557031523678!3d13.76353599033984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e29f1a72743b53%3A0xb7d75ea04f6dea83!2z4LiV4Lil4Liy4LiU4Lir4Lil4Lix4LiB4LiX4Lij4Lix4Lie4Lii4LmM4LmB4Lir4LmI4LiH4Lib4Lij4Liw4LmA4LiX4Lio4LmE4LiX4LiiIC0gVGhlIFN0b2NrIEV4Y2hhbmdlIG9mIFRoYWlsYW5k!5e0!3m2!1sen!2sth!4v1518589636008",
           link: "",
@@ -226,21 +226,24 @@ export default {
     min-width: 140px;
     padding: 0 20px;
     border-radius: 18px;
-    border: 1px solid white;
-    color: white;
-    background: transparent;
+    color: black;
+    background-color: white;
+    border: 0;
     filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.5));
     transition: all .3s;
 
     &:hover {
-      transform: scale(1.05)
+      transform: scale(1.05);
     }
 
     &.disabled {
       opacity: 0.5;
+      background: transparent;
+      border: 1px solid white;
+      color: white;
 
       &:hover {
-        transform: scale(1)
+        transform: scale(1);
       }
     }
   }
@@ -321,19 +324,23 @@ export default {
         border: 0 solid white;
         text-decoration: none;
         color: white;
-        opacity: 0.2;
+        opacity: 0.4;
         transition: all .5s;
 
         img {
-          width: 30px;
+          width: 40px;
           height: auto;
           fill: white;
         }
 
         &:hover {
-          opacity: 0.5;
+          opacity: 0.8;
         }
        
+      }
+
+      @include mobile {
+        padding: 2vh 3vw;
       }
     }
 
