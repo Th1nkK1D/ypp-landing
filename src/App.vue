@@ -136,7 +136,7 @@ export default {
             { name: "Niti", pos: "Lean Startup Thailand", avatar: "DSC00860.JPG"},
             { name: "Krissada", pos: "Lean Startup Thailand", avatar: "DSC00850.JPG"},
           ],
-          map: "",
+          map: "!1m18!1m12!1m3!1d3875.599557799825!2d100.52579381522072!3d13.74267710120657!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e2992ce63a9795%3A0x30d3c8c1558d1354!2sCU+Innovation+Hub!5e0!3m2!1sen!2sth!4v1519574782365",
           link: "https://www.eventpop.me/e/2994-young-lean-entrepreneur",
           expanded: false,
         },
