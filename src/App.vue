@@ -154,7 +154,7 @@ export default {
             { name: "Sitthikit", pos: "Mobile Photographer", avatar: "13908940_10202060088459630_7999859933542120518_o.jpg"},
           ],
           map: "!1m18!1m12!1m3!1d3875.2542381557278!2d100.56557031523678!3d13.76353599033984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e29f1a72743b53%3A0xb7d75ea04f6dea83!2z4LiV4Lil4Liy4LiU4Lir4Lil4Lix4LiB4LiX4Lij4Lix4Lie4Lii4LmM4LmB4Lir4LmI4LiH4Lib4Lij4Liw4LmA4LiX4Lio4LmE4LiX4LiiIC0gVGhlIFN0b2NrIEV4Y2hhbmdlIG9mIFRoYWlsYW5k!5e0!3m2!1sen!2sth!4v1518589636008",
-          link: "",
+          link: "https://www.eventpop.me/e/2995-young-digital-marketeer",
           expanded: false,
         },
         { 
