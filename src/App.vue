@@ -100,14 +100,7 @@
       </div>
     </div><!-- End of Events timeline -->
 
-    <!-- Sponsors -->
-    <!-- <div class="section sponsors" style="text-align: center;">
-      <h2 class="hgreen">Sponsors</h2>
-      <p>Sponsors logo here...</p>
-    </div> -->
-    <!-- End of Sponsors -->
-
-    <!-- Sponsors -->
+    <!-- Abbout us -->
     <div class="section sponsors" style="text-align: center;">
       <h2 class="hblue">About Us</h2>
       <p>พวกเรา คือ กลุ่มนักศึกษาที่รวมตัวกันจาก 10 มหาวิทยาลัย กว่า 20 ชีวิต เพื่อ Volunteer ในการจัดงาน 3 งานนี้ขึ้นมา</p>
@@ -116,7 +109,14 @@
       <a href="https://www.facebook.com/youngpassionateprogram/" target="_blank">
         <button class="btn-prim">ติดตามพวกเราบน Facebook</button>
       </a>
-    </div><!-- End of Sponsors -->
+    </div><!-- End of About us -->
+
+    <!-- Sponsors -->
+    <div class="section sponsors" style="text-align: center;">
+      <h2 class="hgreen">Sponsors</h2>
+      <img v-for="logo in sponsors" :key="logo" :src="'/static/sponsors/'+logo">
+    </div>
+    <!-- End of Sponsors -->
 
   </div>
 </template>
@@ -162,7 +162,7 @@ export default {
           desc: "ปฏิเสธไม่ได้ว่านวัตกรรมสร้างสรรค์ธุรกิจ เทคโนโลยีจึงมีบทบาทสำคัญที่ช่วยสรรสร้างประสบการณ์ใหม่ๆ ให้กับผู้ประกอบการและผู้ใช้ เราจึงอยากชวนทุกคนที่มีใจทางด้าน Programming, Design, หรือProject Management มาร่วมกันจำลองสถานการณ์จริงเพื่อคิดค้น Application หรือ Website เพื่อตอบโจทย์ลูกค้า",
           speakers: [],
           map: "!1m18!1m12!1m3!1d3875.888575614033!2d100.58543395078647!3d13.725195201559128!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e29fb195d786c9%3A0xd33e81e42904a76b!2sHUBBA+Thailand!5e0!3m2!1sen!2sth!4v1519132809342",
-          link: "",
+          link: "https://www.eventpop.me/e/2996-young-innovation-creator",
           expanded: false,
         },
         // { 
@@ -177,6 +177,7 @@ export default {
         //   expanded: false,
         // },
       ],
+      sponsors: ["yeah.png","set.png","lean.png","g-able.png","hubba.png","cu_inno.jpg","software_park.jpg"]
     }
   },
   methods: {
@@ -559,6 +560,13 @@ export default {
   .fade-enter, .fade-leave-to {
     opacity: 0;
     transform: translate(0, -20px);
+  }
+
+  .sponsors {
+    img {
+      margin: 10px;
+      max-height: 50px;
+    }
   }
 </style>
 
