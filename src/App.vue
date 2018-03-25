@@ -114,7 +114,9 @@
     <!-- Sponsors -->
     <div class="section sponsors" style="text-align: center;">
       <h2 class="hgreen">Sponsors</h2>
-      <img v-for="logo in sponsors" :key="logo" :src="'/static/sponsors/'+logo">
+      <div class="tier" v-for="(tier,t) in sponsors" :key="t">
+        <img v-for="logo in tier" :key="logo" :src="'/static/sponsors/'+logo" :style="'max-height: '+(100-50*t)+'px;'">
+      </div>
     </div>
     <!-- End of Sponsors -->
 
@@ -144,7 +146,7 @@ export default {
           date: "6 April - 8 April 2018", name: "YOUNG DIGITAL MARKETEER", color: "#f8a28c", 
           desc: "หากยอดไลค์และยอดแชร์ ไม่ใช่หัวใจหลักของการทำการตลาดบนโลกดิจิตอล แล้วอะไรที่เป็นหัวใจสำคัญของการสร้างแบรนด์เหล่านี้ งาน Young Digital Marketer จึงเหมาะสำหรับผู้ที่อยากสร้างแบรนด์ของตนให้เป็นที่รู้จัก พร้อมกับจับลูกค้าให้อยู่หมัดด้วยพลังของการสื่อสาร",
           speakers: [
-            { name: "Pornthep", pos: "ขอบสนาม", avatar: "PornthepAchatsachat.jpg"},
+            // { name: "Pornthep", pos: "ขอบสนาม", avatar: "PornthepAchatsachat.jpg"},
             { name: "Niti", pos: "Techsource", avatar: "DSC00860.JPG"},
             { name: "Panuwat", pos: "The Nerd Creator", avatar: "15622398_1385228428156931_1323153179127751927_n.jpg"},
             { name: "Sitthichok", pos: "Sista Cafe", avatar: "SitthichokPanyachaisana.jpg"},
@@ -177,7 +179,7 @@ export default {
         //   expanded: false,
         // },
       ],
-      sponsors: ["yeah.png","set.png","lean.png","g-able.png","hubba.png","cu_inno.jpg","software_park.jpg"]
+      sponsors: [["set.png","lean.png"],["g-able.png","hubba.png","cu_inno.jpg","software_park.jpg"]]
     }
   },
   methods: {
@@ -563,9 +565,10 @@ export default {
   }
 
   .sponsors {
+    text-align: center;
+
     img {
-      margin: 10px;
-      max-height: 50px;
+      margin: 20px;
     }
   }
 </style>
