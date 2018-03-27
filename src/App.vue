@@ -162,7 +162,14 @@ export default {
         { 
           date: "20 April - 22 April 2018", name: "YOUNG INNOVATION CREATOR", color: "#97d3de", 
           desc: "ปฏิเสธไม่ได้ว่านวัตกรรมสร้างสรรค์ธุรกิจ เทคโนโลยีจึงมีบทบาทสำคัญที่ช่วยสรรสร้างประสบการณ์ใหม่ๆ ให้กับผู้ประกอบการและผู้ใช้ เราจึงอยากชวนทุกคนที่มีใจทางด้าน Programming, Design, หรือProject Management มาร่วมกันจำลองสถานการณ์จริงเพื่อคิดค้น Application หรือ Website เพื่อตอบโจทย์ลูกค้า",
-          speakers: [],
+          speakers: [
+            { name: "Krissada", pos: "Lean Startup Thailand", avatar: "DSC00850.JPG"},
+            // { name: "Pichaya", pos: "Getlinks", avatar: "1BAB2485-7AC5-4E53-83BC-80C62873B11C.jpg"},
+            { name: "Wicki", pos: "FlowAccount", avatar: "1BAB2485-7AC5-4E53-83BC-80C62873B11C.jpg"},
+            { name: "Kotchawat", pos: "Gable", avatar: "KotchawatGable.jpg"},
+            { name: "Saranyoo", pos: "ChuerJai", avatar: "DSC00648.JPG"},
+            { name: "Nati", pos: "Sellsuki", avatar: "12465983_10208602238000550_4755901477136305608_o.jpg"},
+          ],
           map: "!1m18!1m12!1m3!1d3875.888575614033!2d100.58543395078647!3d13.725195201559128!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e29fb195d786c9%3A0xd33e81e42904a76b!2sHUBBA+Thailand!5e0!3m2!1sen!2sth!4v1519132809342",
           link: "https://www.eventpop.me/e/2996-young-innovation-creator",
           expanded: false,
