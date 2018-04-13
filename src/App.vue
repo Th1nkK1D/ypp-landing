@@ -115,7 +115,7 @@
     <div class="section sponsors" style="text-align: center;">
       <h2 class="hgreen">Sponsors</h2>
       <div class="tier" v-for="(tier,t) in sponsors" :key="t">
-        <img v-for="logo in tier" :key="logo" :src="'/static/sponsors/'+logo" :style="'max-height: '+(100-50*t)+'px;'">
+        <img v-for="logo in tier" :key="logo" :src="'/static/sponsors/'+logo" :style="'max-height: '+(100-25*t)+'px;'">
       </div>
     </div>
     <!-- End of Sponsors -->
@@ -170,7 +170,7 @@ export default {
             { name: "Saranyoo", pos: "ChuerJai", avatar: "DSC00648.JPG"},
             { name: "Nati", pos: "Sellsuki", avatar: "12465983_10208602238000550_4755901477136305608_o.jpg"},
           ],
-          map: "!1m18!1m12!1m3!1d3875.888575614033!2d100.58543395078647!3d13.725195201559128!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e29fb195d786c9%3A0xd33e81e42904a76b!2sHUBBA+Thailand!5e0!3m2!1sen!2sth!4v1519132809342",
+          map: "!1m18!1m12!1m3!1d3876.090535881452!2d100.59865731522045!3d13.71296620188587!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e29fc1230cdc25%3A0x6cf2555d7d643153!2sHUBBA-TO!5e0!3m2!1sen!2sth!4v1523602549585",
           link: "https://www.eventpop.me/e/2996-young-innovation-creator",
           expanded: false,
         },
@@ -186,7 +186,7 @@ export default {
         //   expanded: false,
         // },
       ],
-      sponsors: [["set.png","lean.png"],["g-able.png","hubba.png","cu_inno.jpg","software_park.jpg"]]
+      sponsors: [["set.png","lean.png"],["g-able.png","sodlive.png","software_park.jpg","k_lily.jpg"],["hubba.png","cu_inno.jpg","cp-ram.png","major.jpg","kang_kung.jpg","spacewater.jpg"]]
     }
   },
   methods: {
