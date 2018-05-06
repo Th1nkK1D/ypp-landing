@@ -186,7 +186,7 @@ export default {
         //   expanded: false,
         // },
       ],
-      sponsors: [["set.png","lean.png"],["g-able.png","sodlive.png","software_park.jpg","k_lily.jpg"],["hubba.png","cu_inno.jpg","cp-ram.png","major.jpg","kang_kung.jpg","spacewater.jpg"]]
+      sponsors: [["set.png","lean.png"],["g-able.png","sodlive.png","software_park.jpg","thai_programmer.JPG"],["hubba.png","cu_inno.jpg","cp-ram.png","major.jpg","kang_kung.jpg","spacewater.jpg","k_lily.jpg"]]
     }
   },
   methods: {
